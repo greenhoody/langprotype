@@ -1,0 +1,4 @@
+ numbers can be negative or positive
+ adding, subtracting, multiplication, and division of int32 and double numbers
+ variables can be casted into other types.
+ print results

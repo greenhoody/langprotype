@@ -1,7 +1,7 @@
 # Bartosz.Sawicki@pw.edu.pl
 # 2014-2023
 
-ANTLR=../antlr-4.13.1-complete.jar
+ANTLR=./antlr-4.13.1-complete.jar
 
 all: generate compile test
 

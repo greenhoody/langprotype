@@ -106,6 +106,24 @@ public class LLVMActions extends LangXBaseListener {
        }
     }
 
+   @Override
+   public void exitDiv(LangXParser.DivContext ctx) {
+      Value v2 = stack.pop(); //denominator
+      Value v1 = stack.pop(); //numerator
+      if( v1.type == v2.type ) {
+   if( v1.type == VarType.INT ){
+            LLVMGenerator.div_i32(v1.name, v2.name);
+            stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.INT) );
+         }
+   if( v1.type == VarType.REAL ){
+            LLVMGenerator.div_double(v1.name, v2.name);
+            stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.REAL) );
+      }
+      } else {
+         error(ctx.getStart().getLine(), "div type mismatch");
+      }
+   }
+
     @Override 
     public void exitToint(LangXParser.TointContext ctx) { 
        Value v = stack.pop();

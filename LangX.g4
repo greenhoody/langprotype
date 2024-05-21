@@ -16,7 +16,8 @@ expr0:  expr1			#single0
 ;
 
 expr1:  expr2			#single1
-      | expr2 MULT expr2	#mult 
+      | expr2 MULT expr2	#mult
+      | expr2 DIV expr2 #div
 ;
 
 expr2:   INT			#int
@@ -38,10 +39,10 @@ TOREAL: '(real)'
 ID:   ('a'..'z'|'A'..'Z')+
    ;
 
-REAL: '0'..'9'+'.''0'..'9'+
+REAL: '-'?'0'..'9'+'.''0'..'9'+
     ;
 
-INT: '0'..'9'+
+INT: '-'?'0'..'9'+
     ;
 
 SUB: '-'
@@ -51,6 +52,9 @@ ADD: '+'
     ;
 
 MULT: '*'
+    ;
+
+DIV: '/'
     ;
 
 NEWLINE:	'\r'? '\n'

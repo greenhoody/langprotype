@@ -17,7 +17,7 @@ public class LangXParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, PRINT=4, TOINT=5, TOREAL=6, ID=7, REAL=8, INT=9, 
-		SUB=10, ADD=11, MULT=12, NEWLINE=13, WS=14;
+		SUB=10, ADD=11, MULT=12, DIV=13, NEWLINE=14, WS=15;
 	public static final int
 		RULE_prog = 0, RULE_stat = 1, RULE_expr0 = 2, RULE_expr1 = 3, RULE_expr2 = 4;
 	private static String[] makeRuleNames() {
@@ -30,14 +30,14 @@ public class LangXParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'='", "'('", "')'", "'print'", "'(int)'", "'(real)'", null, null, 
-			null, "'-'", "'+'", "'*'"
+			null, "'-'", "'+'", "'*'", "'/'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, "PRINT", "TOINT", "TOREAL", "ID", "REAL", "INT", 
-			"SUB", "ADD", "MULT", "NEWLINE", "WS"
+			"SUB", "ADD", "MULT", "DIV", "NEWLINE", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -127,7 +127,7 @@ public class LangXParser extends Parser {
 			setState(16);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 8336L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 16528L) != 0)) {
 				{
 				{
 				setState(11);
@@ -379,6 +379,25 @@ public class LangXParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
+	public static class DivContext extends Expr1Context {
+		public List<Expr2Context> expr2() {
+			return getRuleContexts(Expr2Context.class);
+		}
+		public Expr2Context expr2(int i) {
+			return getRuleContext(Expr2Context.class,i);
+		}
+		public TerminalNode DIV() { return getToken(LangXParser.DIV, 0); }
+		public DivContext(Expr1Context ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LangXListener ) ((LangXListener)listener).enterDiv(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitDiv(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class Single1Context extends Expr1Context {
 		public Expr2Context expr2() {
 			return getRuleContext(Expr2Context.class,0);
@@ -417,7 +436,7 @@ public class LangXParser extends Parser {
 		Expr1Context _localctx = new Expr1Context(_ctx, getState());
 		enterRule(_localctx, 6, RULE_expr1);
 		try {
-			setState(42);
+			setState(46);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
@@ -437,6 +456,18 @@ public class LangXParser extends Parser {
 				setState(39);
 				match(MULT);
 				setState(40);
+				expr2();
+				}
+				break;
+			case 3:
+				_localctx = new DivContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(42);
+				expr2();
+				setState(43);
+				match(DIV);
+				setState(44);
 				expr2();
 				}
 				break;
@@ -543,14 +574,14 @@ public class LangXParser extends Parser {
 		Expr2Context _localctx = new Expr2Context(_ctx, getState());
 		enterRule(_localctx, 8, RULE_expr2);
 		try {
-			setState(54);
+			setState(58);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
 				_localctx = new IntContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(44);
+				setState(48);
 				match(INT);
 				}
 				break;
@@ -558,7 +589,7 @@ public class LangXParser extends Parser {
 				_localctx = new RealContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(45);
+				setState(49);
 				match(REAL);
 				}
 				break;
@@ -566,9 +597,9 @@ public class LangXParser extends Parser {
 				_localctx = new TointContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(46);
+				setState(50);
 				match(TOINT);
-				setState(47);
+				setState(51);
 				expr2();
 				}
 				break;
@@ -576,9 +607,9 @@ public class LangXParser extends Parser {
 				_localctx = new TorealContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(48);
+				setState(52);
 				match(TOREAL);
-				setState(49);
+				setState(53);
 				expr2();
 				}
 				break;
@@ -586,11 +617,11 @@ public class LangXParser extends Parser {
 				_localctx = new ParContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(50);
+				setState(54);
 				match(T__1);
-				setState(51);
+				setState(55);
 				expr0();
-				setState(52);
+				setState(56);
 				match(T__2);
 				}
 				break;
@@ -610,43 +641,45 @@ public class LangXParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u000e9\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u000f=\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0001"+
 		"\u0000\u0003\u0000\f\b\u0000\u0001\u0000\u0005\u0000\u000f\b\u0000\n\u0000"+
 		"\f\u0000\u0012\t\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0003\u0001\u0019\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002"+
 		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
 		"\u0003\u0002$\b\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
-		"\u0001\u0003\u0003\u0003+\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004"+
-		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
-		"\u0001\u0004\u0003\u00047\b\u0004\u0001\u0004\u0000\u0000\u0005\u0000"+
-		"\u0002\u0004\u0006\b\u0000\u0000=\u0000\u0010\u0001\u0000\u0000\u0000"+
-		"\u0002\u0018\u0001\u0000\u0000\u0000\u0004#\u0001\u0000\u0000\u0000\u0006"+
-		"*\u0001\u0000\u0000\u0000\b6\u0001\u0000\u0000\u0000\n\f\u0003\u0002\u0001"+
-		"\u0000\u000b\n\u0001\u0000\u0000\u0000\u000b\f\u0001\u0000\u0000\u0000"+
-		"\f\r\u0001\u0000\u0000\u0000\r\u000f\u0005\r\u0000\u0000\u000e\u000b\u0001"+
-		"\u0000\u0000\u0000\u000f\u0012\u0001\u0000\u0000\u0000\u0010\u000e\u0001"+
-		"\u0000\u0000\u0000\u0010\u0011\u0001\u0000\u0000\u0000\u0011\u0001\u0001"+
-		"\u0000\u0000\u0000\u0012\u0010\u0001\u0000\u0000\u0000\u0013\u0014\u0005"+
-		"\u0007\u0000\u0000\u0014\u0015\u0005\u0001\u0000\u0000\u0015\u0019\u0003"+
-		"\u0004\u0002\u0000\u0016\u0017\u0005\u0004\u0000\u0000\u0017\u0019\u0005"+
-		"\u0007\u0000\u0000\u0018\u0013\u0001\u0000\u0000\u0000\u0018\u0016\u0001"+
-		"\u0000\u0000\u0000\u0019\u0003\u0001\u0000\u0000\u0000\u001a$\u0003\u0006"+
-		"\u0003\u0000\u001b\u001c\u0003\u0006\u0003\u0000\u001c\u001d\u0005\u000b"+
-		"\u0000\u0000\u001d\u001e\u0003\u0006\u0003\u0000\u001e$\u0001\u0000\u0000"+
-		"\u0000\u001f \u0003\u0006\u0003\u0000 !\u0005\n\u0000\u0000!\"\u0003\u0006"+
-		"\u0003\u0000\"$\u0001\u0000\u0000\u0000#\u001a\u0001\u0000\u0000\u0000"+
-		"#\u001b\u0001\u0000\u0000\u0000#\u001f\u0001\u0000\u0000\u0000$\u0005"+
-		"\u0001\u0000\u0000\u0000%+\u0003\b\u0004\u0000&\'\u0003\b\u0004\u0000"+
-		"\'(\u0005\f\u0000\u0000()\u0003\b\u0004\u0000)+\u0001\u0000\u0000\u0000"+
-		"*%\u0001\u0000\u0000\u0000*&\u0001\u0000\u0000\u0000+\u0007\u0001\u0000"+
-		"\u0000\u0000,7\u0005\t\u0000\u0000-7\u0005\b\u0000\u0000./\u0005\u0005"+
-		"\u0000\u0000/7\u0003\b\u0004\u000001\u0005\u0006\u0000\u000017\u0003\b"+
-		"\u0004\u000023\u0005\u0002\u0000\u000034\u0003\u0004\u0002\u000045\u0005"+
-		"\u0003\u0000\u000057\u0001\u0000\u0000\u00006,\u0001\u0000\u0000\u0000"+
-		"6-\u0001\u0000\u0000\u00006.\u0001\u0000\u0000\u000060\u0001\u0000\u0000"+
-		"\u000062\u0001\u0000\u0000\u00007\t\u0001\u0000\u0000\u0000\u0006\u000b"+
-		"\u0010\u0018#*6";
+		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0003\u0003"+
+		"/\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004"+
+		";\b\u0004\u0001\u0004\u0000\u0000\u0005\u0000\u0002\u0004\u0006\b\u0000"+
+		"\u0000B\u0000\u0010\u0001\u0000\u0000\u0000\u0002\u0018\u0001\u0000\u0000"+
+		"\u0000\u0004#\u0001\u0000\u0000\u0000\u0006.\u0001\u0000\u0000\u0000\b"+
+		":\u0001\u0000\u0000\u0000\n\f\u0003\u0002\u0001\u0000\u000b\n\u0001\u0000"+
+		"\u0000\u0000\u000b\f\u0001\u0000\u0000\u0000\f\r\u0001\u0000\u0000\u0000"+
+		"\r\u000f\u0005\u000e\u0000\u0000\u000e\u000b\u0001\u0000\u0000\u0000\u000f"+
+		"\u0012\u0001\u0000\u0000\u0000\u0010\u000e\u0001\u0000\u0000\u0000\u0010"+
+		"\u0011\u0001\u0000\u0000\u0000\u0011\u0001\u0001\u0000\u0000\u0000\u0012"+
+		"\u0010\u0001\u0000\u0000\u0000\u0013\u0014\u0005\u0007\u0000\u0000\u0014"+
+		"\u0015\u0005\u0001\u0000\u0000\u0015\u0019\u0003\u0004\u0002\u0000\u0016"+
+		"\u0017\u0005\u0004\u0000\u0000\u0017\u0019\u0005\u0007\u0000\u0000\u0018"+
+		"\u0013\u0001\u0000\u0000\u0000\u0018\u0016\u0001\u0000\u0000\u0000\u0019"+
+		"\u0003\u0001\u0000\u0000\u0000\u001a$\u0003\u0006\u0003\u0000\u001b\u001c"+
+		"\u0003\u0006\u0003\u0000\u001c\u001d\u0005\u000b\u0000\u0000\u001d\u001e"+
+		"\u0003\u0006\u0003\u0000\u001e$\u0001\u0000\u0000\u0000\u001f \u0003\u0006"+
+		"\u0003\u0000 !\u0005\n\u0000\u0000!\"\u0003\u0006\u0003\u0000\"$\u0001"+
+		"\u0000\u0000\u0000#\u001a\u0001\u0000\u0000\u0000#\u001b\u0001\u0000\u0000"+
+		"\u0000#\u001f\u0001\u0000\u0000\u0000$\u0005\u0001\u0000\u0000\u0000%"+
+		"/\u0003\b\u0004\u0000&\'\u0003\b\u0004\u0000\'(\u0005\f\u0000\u0000()"+
+		"\u0003\b\u0004\u0000)/\u0001\u0000\u0000\u0000*+\u0003\b\u0004\u0000+"+
+		",\u0005\r\u0000\u0000,-\u0003\b\u0004\u0000-/\u0001\u0000\u0000\u0000"+
+		".%\u0001\u0000\u0000\u0000.&\u0001\u0000\u0000\u0000.*\u0001\u0000\u0000"+
+		"\u0000/\u0007\u0001\u0000\u0000\u00000;\u0005\t\u0000\u00001;\u0005\b"+
+		"\u0000\u000023\u0005\u0005\u0000\u00003;\u0003\b\u0004\u000045\u0005\u0006"+
+		"\u0000\u00005;\u0003\b\u0004\u000067\u0005\u0002\u0000\u000078\u0003\u0004"+
+		"\u0002\u000089\u0005\u0003\u0000\u00009;\u0001\u0000\u0000\u0000:0\u0001"+
+		"\u0000\u0000\u0000:1\u0001\u0000\u0000\u0000:2\u0001\u0000\u0000\u0000"+
+		":4\u0001\u0000\u0000\u0000:6\u0001\u0000\u0000\u0000;\t\u0001\u0000\u0000"+
+		"\u0000\u0006\u000b\u0010\u0018#.:";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

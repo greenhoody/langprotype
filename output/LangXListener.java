@@ -101,6 +101,18 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitMult(LangXParser.MultContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code div}
+	 * labeled alternative in {@link LangXParser#expr1}.
+	 * @param ctx the parse tree
+	 */
+	void enterDiv(LangXParser.DivContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code div}
+	 * labeled alternative in {@link LangXParser#expr1}.
+	 * @param ctx the parse tree
+	 */
+	void exitDiv(LangXParser.DivContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code int}
 	 * labeled alternative in {@link LangXParser#expr2}.
 	 * @param ctx the parse tree
