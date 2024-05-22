@@ -16,6 +16,8 @@ class Value{
 
 public class LLVMActions extends LangXBaseListener {
     
+   //HashMap<String, Value> variables_2 = new HashMap<String, Value>();
+
     HashMap<String, VarType> variables = new HashMap<String, VarType>();
     Stack<Value> stack = new Stack<Value>();
 
@@ -32,6 +34,23 @@ public class LLVMActions extends LangXBaseListener {
          LLVMGenerator.declare_double(ID);
          LLVMGenerator.assign_double(ID, v.name);
        } 
+    }
+
+   @Override
+    public void exitId(LangXParser.IdContext ctx) {
+        String ID = ctx.ID().getText();
+        if (variables.containsKey(ID)) {
+            VarType type = variables.get(ID);
+            int reg = -1;
+            if (type == VarType.INT) {
+                reg = LLVMGenerator.load_i32(ID);
+            } else if (type == VarType.REAL) {
+                reg = LLVMGenerator.load_double(ID);
+            }
+            stack.push(new Value("%" + reg, type));
+        } else {
+            error(ctx.getStart().getLine(), "no such variable");
+        }
     }
 
     @Override 

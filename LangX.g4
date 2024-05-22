@@ -12,17 +12,18 @@ stat:	 ID '=' expr0		#assign
 ;
 
 expr0:  expr1			#single0
-      | expr1 ADD expr1	#add 
-      | expr1 SUB expr1 #sub
+      | expr0 ADD expr1	#add
+      | expr0 SUB expr1 #sub
 ;
 
 expr1:  expr2			#single1
-      | expr2 MULT expr2	#mult
-      | expr2 DIV expr2 #div
+      | expr1 MULT expr2	#mult
+      | expr1 DIV expr2 #div
 ;
 
 expr2:   INT			#int
        | REAL           #real
+       | ID             #id
        | TOINT expr2		#toint
        | TOREAL expr2		#toreal
        | '(' expr0 ')'		#par

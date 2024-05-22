@@ -36,14 +36,16 @@ class LLVMGenerator{
    }
 
 
-   static void load_i32(String id){
+   static int load_i32(String id){
       main_text += "%"+reg+" = load i32, i32* %"+id+"\n";
       reg++;
+      return reg - 1;
    }
 
-   static void load_double(String id){
+   static int load_double(String id){
       main_text += "%"+reg+" = load double, double* %"+id+"\n";
       reg++;
+      return reg - 1;
    }
 
    static void add_i32(String val1, String val2){
@@ -103,7 +105,7 @@ class LLVMGenerator{
 
 
     static void scanReal(String id) {
-        main_text += "%" + reg + " = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strsd, i32 0, i32 0), double* " + id + ")\n";
+        main_text += "%"+reg+" = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strsd, i32 0, i32 0), double* %"+id+")\n";
         reg++;
     }
 
@@ -113,6 +115,7 @@ class LLVMGenerator{
       text += "declare i32 @__isoc99_scanf(i8*, ...)\n";
       text += "@strpi = constant [4 x i8] c\"%d\\0A\\00\"\n";
       text += "@strpd = constant [4 x i8] c\"%f\\0A\\00\"\n";
+      text += "@strsd = constant [4 x i8] c\"%lf\\00\"\n";
       text += "@strs = constant [3 x i8] c\"%d\\00\"\n";
       text += header_text;
       text += "define i32 @main() nounwind{\n";

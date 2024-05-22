@@ -89,6 +89,18 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitSub(LangXParser.SubContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code div}
+	 * labeled alternative in {@link LangXParser#expr1}.
+	 * @param ctx the parse tree
+	 */
+	void enterDiv(LangXParser.DivContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code div}
+	 * labeled alternative in {@link LangXParser#expr1}.
+	 * @param ctx the parse tree
+	 */
+	void exitDiv(LangXParser.DivContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code single1}
 	 * labeled alternative in {@link LangXParser#expr1}.
 	 * @param ctx the parse tree
@@ -113,18 +125,6 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitMult(LangXParser.MultContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code div}
-	 * labeled alternative in {@link LangXParser#expr1}.
-	 * @param ctx the parse tree
-	 */
-	void enterDiv(LangXParser.DivContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code div}
-	 * labeled alternative in {@link LangXParser#expr1}.
-	 * @param ctx the parse tree
-	 */
-	void exitDiv(LangXParser.DivContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code int}
 	 * labeled alternative in {@link LangXParser#expr2}.
 	 * @param ctx the parse tree
@@ -148,6 +148,18 @@ public interface LangXListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitReal(LangXParser.RealContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code id}
+	 * labeled alternative in {@link LangXParser#expr2}.
+	 * @param ctx the parse tree
+	 */
+	void enterId(LangXParser.IdContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code id}
+	 * labeled alternative in {@link LangXParser#expr2}.
+	 * @param ctx the parse tree
+	 */
+	void exitId(LangXParser.IdContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code toint}
 	 * labeled alternative in {@link LangXParser#expr2}.
