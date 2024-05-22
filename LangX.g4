@@ -8,6 +8,7 @@ prog: ( stat? NEWLINE )*
 
 stat:	 ID '=' expr0		#assign
 	| PRINT ID   		#print
+	| READ ID           #read
 ;
 
 expr0:  expr1			#single0
@@ -21,11 +22,15 @@ expr1:  expr2			#single1
 ;
 
 expr2:   INT			#int
-       | REAL			#real
+       | REAL           #real
        | TOINT expr2		#toint
        | TOREAL expr2		#toreal
        | '(' expr0 ')'		#par
 ;	
+
+
+READ:	'read'
+    ;
 
 PRINT:	'print' 
     ;

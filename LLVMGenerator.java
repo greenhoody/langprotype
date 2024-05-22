@@ -96,6 +96,17 @@ class LLVMGenerator{
       reg++;
    }
 
+   static void scanInt(String id){
+      main_text += "%"+reg+" = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @strs, i32 0, i32 0),
+      i32* %"+id+")\n";
+      reg++;
+   }
+
+
+    static void scanFloat(String id) {
+        buffer += "%" + reg + " = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strsd, i32 0, i32 0), double* " + id + ")\n";
+        reg++;
+    }
 
    static String generate(){
       String text = "";

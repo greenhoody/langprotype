@@ -2,11 +2,12 @@
 import java.util.HashMap;
 import java.util.Stack;
 
-enum VarType{ INT, REAL, UNKNOWN }
+enum VarType{ INT, REAL, STRING ,UNKNOWN }
 
 class Value{ 
 	public String name;
 	public VarType type;
+
 	public Value( String name, VarType type ){
 		this.name = name;
 		this.type = type;
@@ -152,7 +153,23 @@ public class LLVMActions extends LangXBaseListener {
        } else {
           error(ctx.getStart().getLine(), "unknown variable "+ID);
        }
-    } 
+    }
+
+    @Override
+    public void exitRead(LangXParser.ReadContext ctx) {
+       String ID = ctx.ID().getText();
+       VarType type = variables.get(ID);
+       if( ! variables.containsKey(ID) ) {
+         error(ctx.getStart().getLine(), "unknown variable "+ID);
+       } else {
+         if(type == INT)
+         {
+            LLVMGenerator.scanInt(ID);
+         } else if (type == FLOAT) {
+            LLVMGenerator.scanFloat(ID);
+         }
+       }
+    }
 
    void error(int line, String msg){
        System.err.println("Error, line "+line+", "+msg);

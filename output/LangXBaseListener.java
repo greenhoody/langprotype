@@ -52,6 +52,18 @@ public class LangXBaseListener implements LangXListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRead(LangXParser.ReadContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRead(LangXParser.ReadContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSingle0(LangXParser.Single0Context ctx) { }
 	/**
 	 * {@inheritDoc}

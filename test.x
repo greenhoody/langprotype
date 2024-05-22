@@ -5,3 +5,6 @@ b = 4 / 2
 print b
 c = -4.0 - -3.0
 print c
+
+read z
+print z
