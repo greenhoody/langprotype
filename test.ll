@@ -21,10 +21,10 @@ store i32 %4, i32* %b
 store double %7, double* %c
 %8 = load double, double* %c
 %9 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %8)
-%z = alloca i32
-store i32 0, i32* %z
-%10 = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @strs, i32 0, i32 0), i32* %z)
-%11 = load i32, i32* %z
-%12 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpi, i32 0, i32 0), i32 %11)
+%z = alloca double
+store double 1.0, double* %z
+%10 = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strsd, i32 0, i32 0), double* z)
+%11 = load double, double* %z
+%12 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %11)
 ret i32 0 }
 
