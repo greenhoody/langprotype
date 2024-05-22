@@ -2,7 +2,7 @@
 import java.util.HashMap;
 import java.util.Stack;
 
-enum VarType{ INT, REAL, STRING ,UNKNOWN }
+enum VarType{ INT, REAL, BOOL ,UNKNOWN }
 
 class Value{ 
 	public String name;
@@ -36,6 +36,15 @@ public class LLVMActions extends LangXBaseListener {
        } 
     }
 
+        @Override
+    public void exitAssignBool(LangXParser.AssignBoolContext ctx) {
+      String ID = ctx.ID().getText();
+      Value v = stack.pop();
+      variables.put(ID, v.type);
+      LLVMGenerator.declare_bool(ID);
+      LLVMGenerator.assign_bool(ID, v.name);
+    }
+
    @Override
     public void exitId(LangXParser.IdContext ctx) {
         String ID = ctx.ID().getText();
@@ -67,6 +76,12 @@ public class LLVMActions extends LangXBaseListener {
     public void exitReal(LangXParser.RealContext ctx) { 
          stack.push( new Value(ctx.REAL().getText(), VarType.REAL) );       
     } 
+
+    // TO-DO
+    @Override
+    public void exitBool(LangXParser.BoolContext ctx) {
+         stack.push( new Value(ctx.BOOL().getText(), VarType.BOOL) );
+    }
 
     @Override 
     public void exitAdd(LangXParser.AddContext ctx) { 
@@ -144,6 +159,18 @@ public class LLVMActions extends LangXBaseListener {
       }
    }
 
+      @Override
+   public void exitAnd(LangXParser.AndContext ctx) {
+      Value v2 = stack.pop(); //denominator
+      Value v1 = stack.pop(); //numerator
+      if( v1.type == v2.type && v1.type == VarType.BOOL ) {
+         LLVMGenerator.and(v1.name, v2.name);
+         stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.BOOL) );
+      } else {
+         error(ctx.getStart().getLine(), "and type mismatch, not all variables are bool");
+      }
+   }
+
     @Override 
     public void exitToint(LangXParser.TointContext ctx) { 
        Value v = stack.pop();
@@ -168,6 +195,9 @@ public class LLVMActions extends LangXBaseListener {
           }
           if( type == VarType.REAL ){
             LLVMGenerator.printf_double( ID );
+          }
+          if( type == VarType.BOOL ){
+            LLVMGenerator.printf_bool( ID );
           }
        } else {
           error(ctx.getStart().getLine(), "unknown variable "+ID);

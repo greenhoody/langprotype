@@ -23,9 +23,22 @@ class LLVMGenerator{
       main_text += "%"+id+" = alloca i32\n";
    }
 
+   static void printf_bool(String id){
+      main_text += "%"+reg+" = load i1, i1* %"+id+"\n";
+      reg++;
+      main_text += "%"+reg+" = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpb, i32 0, i32 0), i1 %"+(reg-1)+")\n";
+      reg++;
+   }
+
+   //TO_DO
    static void declare_double(String id){
       main_text += "%"+id+" = alloca double\n";
    }
+
+   static void declare_bool(String id){
+      main_text += "%"+id+" = alloca i1\n";
+   }
+
 
    static void assign_i32(String id, String value){
       main_text += "store i32 "+value+", i32* %"+id+"\n";
@@ -33,6 +46,11 @@ class LLVMGenerator{
 
    static void assign_double(String id, String value){
       main_text += "store double "+value+", double* %"+id+"\n";
+   }
+
+   //TO-DO
+   static void assign_bool(String id, String value){
+      main_text += "store i1 "+value+", i1* %"+id+"\n";
    }
 
 
@@ -46,6 +64,11 @@ class LLVMGenerator{
       main_text += "%"+reg+" = load double, double* %"+id+"\n";
       reg++;
       return reg - 1;
+   }
+
+   static void and(String val1, String val2){
+      main_text += "%"+reg+" = and i1 "+val1+", "+val2+"\n";
+      reg++;
    }
 
    static void add_i32(String val1, String val2){
@@ -115,6 +138,9 @@ class LLVMGenerator{
       text += "declare i32 @__isoc99_scanf(i8*, ...)\n";
       text += "@strpi = constant [4 x i8] c\"%d\\0A\\00\"\n";
       text += "@strpd = constant [4 x i8] c\"%f\\0A\\00\"\n";
+      //text += "@strpb = constant [4 x i8] c\"%i1\\0A\\00\"\n";
+      text += "@strpb = constant [4 x i8] c\"%b\\0A\\00\"\n";
+      text += "@strps = constant [4 x i8] c\"%s\\0A\\00\"\n";
       text += "@strsd = constant [4 x i8] c\"%lf\\00\"\n";
       text += "@strs = constant [3 x i8] c\"%d\\00\"\n";
       text += header_text;

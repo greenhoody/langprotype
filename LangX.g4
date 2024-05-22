@@ -6,7 +6,8 @@ grammar LangX;
 prog: ( stat? NEWLINE )* 
 ;
 
-stat:	 ID '=' expr0		#assign
+stat:	 ID '=' expr0   #assign
+    | ID '=' boolexpr0  #assignBool
 	| PRINT ID   		#print
 	| READ ID           #read
 ;
@@ -29,6 +30,60 @@ expr2:   INT			#int
        | '(' expr0 ')'		#par
 ;	
 
+boolexpr0:  boolexpr1                   #singlebool0
+        |   boolexpr0 AND boolexpr1     #and
+        |   boolexpr0 OR boolexpr1      #or
+        |   boolexpr0 XOR boolexpr1     #xor
+        |   boolexpr0 NEG boolexpr1     #neg
+        ;
+
+
+boolexpr1: ID                   #idb
+        |  BOOL                 #bool
+        |  '(' boolexpr0 ')'    #parb
+        ;
+
+
+compare:  EQUALS        #equals
+        | NOTEQUALS     #notequals
+        | GREATERTHAN   #greaterthan
+        | LESSTHAN      #lessthan
+        ;
+
+EQUALS: '==';
+
+NOTEQUALS: '!=';
+
+GREATERTHAN: '>=';
+
+LESSTHAN: '<=';
+
+GREATER: '>';
+
+LESS: '<';
+
+
+BOOLOP:   AND
+        | OR
+        | XOR
+        | NEG
+        ;
+
+BOOL : 'true'
+    | 'false'
+    ;
+
+AND: '&&'
+    ;
+
+OR: '||'
+    ;
+
+XOR: '^'
+    ;
+
+NEG: '!'
+    ;
 
 READ:	'read'
     ;
