@@ -162,11 +162,11 @@ public class LLVMActions extends LangXBaseListener {
        if( ! variables.containsKey(ID) ) {
          error(ctx.getStart().getLine(), "unknown variable "+ID);
        } else {
-         if(type == INT)
+         if(type == VarType.INT)
          {
             LLVMGenerator.scanInt(ID);
-         } else if (type == FLOAT) {
-            LLVMGenerator.scanFloat(ID);
+         } else if (type == VarType.REAL) {
+            LLVMGenerator.scanReal(ID);
          }
        }
     }

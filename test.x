@@ -6,5 +6,6 @@ print b
 c = -4.0 - -3.0
 print c
 
+z = 0
 read z
 print z
