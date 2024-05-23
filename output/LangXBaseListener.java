@@ -232,18 +232,6 @@ public class LangXBaseListener implements LangXListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOr(LangXParser.OrContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOr(LangXParser.OrContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAnd(LangXParser.AndContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -251,6 +239,18 @@ public class LangXBaseListener implements LangXListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAnd(LangXParser.AndContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOr(LangXParser.OrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOr(LangXParser.OrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

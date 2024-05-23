@@ -62,6 +62,19 @@ public class LLVMActions extends LangXBaseListener {
         }
     }
 
+    @Override
+    public void exitIdb(LangXParser.IdbContext ctx) {
+        String ID = ctx.ID().getText();
+        if (variables.containsKey(ID)) {
+            VarType type = variables.get(ID);
+            int reg = -1;
+            reg = LLVMGenerator.load_bool(ID);
+            stack.push(new Value("%" + reg, type));
+        } else {
+            error(ctx.getStart().getLine(), "no such variable");
+        }
+    }
+
     @Override 
     public void exitProg(LangXParser.ProgContext ctx) { 
        System.out.println( LLVMGenerator.generate() );
@@ -174,7 +187,6 @@ public class LLVMActions extends LangXBaseListener {
    @Override
    public void exitNeg(LangXParser.NegContext ctx) {
       Value v1 = stack.pop(); //numerator
-      System.out.println(v1.name);
       if(v1.type == VarType.BOOL ) {
          LLVMGenerator.neg(v1.name);
          stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.BOOL) );
@@ -194,6 +206,7 @@ public class LLVMActions extends LangXBaseListener {
             error(ctx.getStart().getLine(), "and type mismatch, not all variables are bool");
         }
     }
+
 
     @Override
    public void exitXor(LangXParser.XorContext ctx) {

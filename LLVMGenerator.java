@@ -66,6 +66,12 @@ class LLVMGenerator{
       return reg - 1;
    }
 
+   static int load_bool(String id){
+      main_text += "%"+reg+" = load i1, i1* %"+id+"\n";
+      reg++;
+      return reg - 1;
+   }
+
    static void and(String val1, String val2){
       main_text += "%"+reg+" = and i1 "+val1+", "+val2+"\n";
       reg++;

@@ -1,6 +1,6 @@
-g = false ^ true
-
-h = true
-tmp = h
-
-print tmp
+a = true && false
+b = true && true
+c = !true
+print a
+print b
+print c
