@@ -20,7 +20,16 @@ store i32 3, i32* %b
 store i32 %5, i32* %c
 %6 = load i32, i32* %c
 %7 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpi, i32 0, i32 0), i32 %6)
+%8 = and i1 true, false
+%9 = and i1 %8, true
 %d = alloca i1
-store i1 true, i1* %d
+store i1 %9, i1* %d
+%10 = load i1, i1* %d
+%11 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpb, i32 0, i32 0), i1 %10)
+%12 = and i1 true, true
+%e = alloca i1
+store i1 %12, i1* %e
+%13 = load i1, i1* %e
+%14 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpb, i32 0, i32 0), i1 %13)
 ret i32 0 }
 

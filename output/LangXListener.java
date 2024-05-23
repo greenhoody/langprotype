@@ -17,18 +17,6 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitProg(LangXParser.ProgContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code assign}
-	 * labeled alternative in {@link LangXParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssign(LangXParser.AssignContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code assign}
-	 * labeled alternative in {@link LangXParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssign(LangXParser.AssignContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code assignBool}
 	 * labeled alternative in {@link LangXParser#stat}.
 	 * @param ctx the parse tree
@@ -40,6 +28,18 @@ public interface LangXListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAssignBool(LangXParser.AssignBoolContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code assign}
+	 * labeled alternative in {@link LangXParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssign(LangXParser.AssignContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assign}
+	 * labeled alternative in {@link LangXParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssign(LangXParser.AssignContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code print}
 	 * labeled alternative in {@link LangXParser#stat}.
@@ -269,18 +269,6 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitSinglebool0(LangXParser.Singlebool0Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code idb}
-	 * labeled alternative in {@link LangXParser#boolexpr1}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdb(LangXParser.IdbContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code idb}
-	 * labeled alternative in {@link LangXParser#boolexpr1}.
-	 * @param ctx the parse tree
-	 */
-	void exitIdb(LangXParser.IdbContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code bool}
 	 * labeled alternative in {@link LangXParser#boolexpr1}.
 	 * @param ctx the parse tree
@@ -292,6 +280,18 @@ public interface LangXListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBool(LangXParser.BoolContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code idb}
+	 * labeled alternative in {@link LangXParser#boolexpr1}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdb(LangXParser.IdbContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code idb}
+	 * labeled alternative in {@link LangXParser#boolexpr1}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdb(LangXParser.IdbContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code parb}
 	 * labeled alternative in {@link LangXParser#boolexpr1}.

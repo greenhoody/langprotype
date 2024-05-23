@@ -1,13 +1,10 @@
-// Demo for two types expression grammar
-// Bartosz Sawicki, 2014-2023
-
 grammar LangX;
 
 prog: ( stat? NEWLINE )* 
 ;
 
-stat:	 ID '=' expr0   #assign
-    | ID '=' boolexpr0  #assignBool
+stat:	ID '=' boolexpr0  #assignBool
+    | ID '=' expr0   #assign
 	| PRINT ID   		#print
 	| READ ID           #read
 ;
@@ -38,11 +35,10 @@ boolexpr0:  boolexpr1                   #singlebool0
         ;
 
 
-boolexpr1: ID                   #idb
-        |  BOOL                 #bool
+boolexpr1: BOOL                 #bool
+        |  ID                   #idb
         |  '(' boolexpr0 ')'    #parb
         ;
-
 
 compare:  EQUALS        #equals
         | NOTEQUALS     #notequals
@@ -62,16 +58,9 @@ GREATER: '>';
 
 LESS: '<';
 
-
-BOOLOP:   AND
-        | OR
-        | XOR
-        | NEG
-        ;
-
-BOOL : 'true'
-    | 'false'
+BOOL : ('true'|'false')
     ;
+
 
 AND: '&&'
     ;

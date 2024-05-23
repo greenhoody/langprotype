@@ -3,7 +3,7 @@ b = 3
 c = (a + b) * 3 * 2
 print c
 
-d = true && false
+d = true && false && true
 print d
 
 e = true && true
