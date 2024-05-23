@@ -71,6 +71,11 @@ class LLVMGenerator{
       reg++;
    }
 
+   static void or(String val1, String val2){
+      main_text += "%"+reg+" = or i1 "+val1+", "+val2+"\n";
+      reg++;
+   }
+
    static void add_i32(String val1, String val2){
       main_text += "%"+reg+" = add i32 "+val1+", "+val2+"\n";
       reg++;

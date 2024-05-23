@@ -3,8 +3,8 @@ grammar LangX;
 prog: ( stat? NEWLINE )* 
 ;
 
-stat:	ID '=' boolexpr0  #assignBool
-    | ID '=' expr0   #assign
+stat: ID ' = ' boolexpr0  #assignBool
+    | ID ' = ' expr0      #assign
 	| PRINT ID   		#print
 	| READ ID           #read
 ;
@@ -46,29 +46,29 @@ compare:  EQUALS        #equals
         | LESSTHAN      #lessthan
         ;
 
-EQUALS: '==';
+EQUALS: ' == ';
 
-NOTEQUALS: '!=';
+NOTEQUALS: ' != ';
 
-GREATERTHAN: '>=';
+GREATERTHAN: ' >= ';
 
-LESSTHAN: '<=';
+LESSTHAN: ' <= ';
 
-GREATER: '>';
+GREATER: ' > ';
 
-LESS: '<';
+LESS: ' < ';
 
 BOOL : ('true'|'false')
     ;
 
 
-AND: '&&'
+AND: ' && '
     ;
 
-OR: '||'
+OR: ' || '
     ;
 
-XOR: '^'
+XOR: ' ^ '
     ;
 
 NEG: '!'
@@ -95,16 +95,16 @@ REAL: '-'?'0'..'9'+'.''0'..'9'+
 INT: '-'?'0'..'9'+
     ;
 
-SUB: '-'
+SUB: ' - '
     ;
 
-ADD: '+'
+ADD: ' + '
     ;
 
-MULT: '*'
+MULT: ' * '
     ;
 
-DIV: '/'
+DIV: ' / '
     ;
 
 NEWLINE:	'\r'? '\n'

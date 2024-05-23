@@ -1,12 +1,13 @@
 // Intro to ANTLR+LLVM
 // sawickib, 2014-2023
 
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        CharStream input = CharStreams.fromFileName(args[0]);
+        CharStream input = CharStreams.fromFileName("test.x");
 
         LangXLexer lexer = new LangXLexer(input);
 

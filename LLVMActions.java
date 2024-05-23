@@ -171,6 +171,19 @@ public class LLVMActions extends LangXBaseListener {
       }
    }
 
+
+   @Override
+    public void exitOr(LangXParser.AndContext ctx) {
+        Value v2 = stack.pop(); //denominator
+        Value v1 = stack.pop(); //numerator
+        if( v1.type == v2.type && v1.type == VarType.BOOL ) {
+            LLVMGenerator.or(v1.name, v2.name);
+            stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.BOOL) );
+        } else {
+            error(ctx.getStart().getLine(), "and type mismatch, not all variables are bool");
+        }
+    }
+
     @Override 
     public void exitToint(LangXParser.TointContext ctx) { 
        Value v = stack.pop();

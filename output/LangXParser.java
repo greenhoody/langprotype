@@ -1,4 +1,4 @@
-// Generated from LangX.g4 by ANTLR 4.13.1
+// Generated from C:/Users/John/Desktop/kompro read/langprotype/LangX.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -33,9 +33,10 @@ public class LangXParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'='", "'('", "')'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", 
-			null, "'&&'", "'||'", "'^'", "'!'", "'read'", "'print'", "'(int)'", "'(real)'", 
-			null, null, null, "'-'", "'+'", "'*'", "'/'"
+			null, "' = '", "'('", "')'", "' == '", "' != '", "' >= '", "' <= '", 
+			"' > '", "' < '", null, "' && '", "' || '", "' ^ '", "'!'", "'read'", 
+			"'print'", "'(int)'", "'(real)'", null, null, null, "' - '", "' + '", 
+			"' * '", "' / '"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -122,6 +123,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitProg(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitProg(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ProgContext prog() throws RecognitionException {
@@ -195,6 +201,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitAssignBool(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitAssignBool(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class PrintContext extends StatContext {
@@ -209,6 +220,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitPrint(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitPrint(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ReadContext extends StatContext {
@@ -222,6 +238,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitRead(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitRead(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -238,6 +259,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitAssign(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitAssign(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -331,6 +357,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitSingle0(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitSingle0(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AddContext extends Expr0Context {
@@ -350,6 +381,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitAdd(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitAdd(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SubContext extends Expr0Context {
@@ -368,6 +404,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitSub(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitSub(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -480,6 +521,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitDiv(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitDiv(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class Single1Context extends Expr1Context {
@@ -494,6 +540,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitSingle1(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitSingle1(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -513,6 +564,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitMult(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitMult(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -621,6 +677,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitPar(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitPar(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TointContext extends Expr2Context {
@@ -636,6 +697,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitToint(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitToint(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -653,6 +719,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitToreal(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitToreal(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class RealContext extends Expr2Context {
@@ -665,6 +736,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitReal(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitReal(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -679,6 +755,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitId(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitId(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class IntContext extends Expr2Context {
@@ -691,6 +772,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitInt(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitInt(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -802,6 +888,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitNeg(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitNeg(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class OrContext extends Boolexpr0Context {
@@ -820,6 +911,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitOr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitOr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -840,6 +936,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitAnd(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitAnd(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class XorContext extends Boolexpr0Context {
@@ -859,6 +960,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitXor(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitXor(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class Singlebool0Context extends Boolexpr0Context {
@@ -873,6 +979,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitSinglebool0(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitSinglebool0(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1003,6 +1114,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitBool(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitBool(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ParbContext extends Boolexpr1Context {
@@ -1018,6 +1134,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitParb(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitParb(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class IdbContext extends Boolexpr1Context {
@@ -1030,6 +1151,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitIdb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitIdb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1107,6 +1233,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitLessthan(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitLessthan(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class EqualsContext extends CompareContext {
@@ -1119,6 +1250,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitEquals(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitEquals(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1133,6 +1269,11 @@ public class LangXParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitNotequals(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitNotequals(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GreaterthanContext extends CompareContext {
@@ -1145,6 +1286,11 @@ public class LangXParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LangXListener ) ((LangXListener)listener).exitGreaterthan(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LangXVisitor ) return ((LangXVisitor<? extends T>)visitor).visitGreaterthan(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
