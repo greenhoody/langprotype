@@ -1,10 +1,12 @@
-a = 2
-b = 3
-c = (a + b) * 3 * 2
-print c
 
-d = true && false && true
-print d
 
-e = true && true
+e = true ^ true
 print e
+
+f = false ^ false
+print f
+
+g = false ^ true
+print g
+
+print !g

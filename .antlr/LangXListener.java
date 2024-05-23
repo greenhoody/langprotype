@@ -1,4 +1,4 @@
-// Generated from LangX.g4 by ANTLR 4.13.1
+// Generated from /home/greenhoody/Desktop/JFIK/langprotype/LangX.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -209,17 +209,17 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitPar(LangXParser.ParContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code or}
+	 * Enter a parse tree produced by the {@code singlebool0}
 	 * labeled alternative in {@link LangXParser#boolexpr0}.
 	 * @param ctx the parse tree
 	 */
-	void enterOr(LangXParser.OrContext ctx);
+	void enterSinglebool0(LangXParser.Singlebool0Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code or}
+	 * Exit a parse tree produced by the {@code singlebool0}
 	 * labeled alternative in {@link LangXParser#boolexpr0}.
 	 * @param ctx the parse tree
 	 */
-	void exitOr(LangXParser.OrContext ctx);
+	void exitSinglebool0(LangXParser.Singlebool0Context ctx);
 	/**
 	 * Enter a parse tree produced by the {@code and}
 	 * labeled alternative in {@link LangXParser#boolexpr0}.
@@ -233,6 +233,18 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitAnd(LangXParser.AndContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code or}
+	 * labeled alternative in {@link LangXParser#boolexpr0}.
+	 * @param ctx the parse tree
+	 */
+	void enterOr(LangXParser.OrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code or}
+	 * labeled alternative in {@link LangXParser#boolexpr0}.
+	 * @param ctx the parse tree
+	 */
+	void exitOr(LangXParser.OrContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code xor}
 	 * labeled alternative in {@link LangXParser#boolexpr0}.
 	 * @param ctx the parse tree
@@ -245,17 +257,17 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitXor(LangXParser.XorContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code singlebool0}
+	 * Enter a parse tree produced by the {@code neg}
 	 * labeled alternative in {@link LangXParser#boolexpr0}.
 	 * @param ctx the parse tree
 	 */
-	void enterSinglebool0(LangXParser.Singlebool0Context ctx);
+	void enterNeg(LangXParser.NegContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code singlebool0}
+	 * Exit a parse tree produced by the {@code neg}
 	 * labeled alternative in {@link LangXParser#boolexpr0}.
 	 * @param ctx the parse tree
 	 */
-	void exitSinglebool0(LangXParser.Singlebool0Context ctx);
+	void exitNeg(LangXParser.NegContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code bool}
 	 * labeled alternative in {@link LangXParser#boolexpr1}.

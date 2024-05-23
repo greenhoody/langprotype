@@ -1,4 +1,4 @@
-// Generated from LangX.g4 by ANTLR 4.13.1
+// Generated from /home/greenhoody/Desktop/JFIK/langprotype/LangX.g4 by ANTLR 4.9.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -9,7 +9,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-@SuppressWarnings("CheckReturnValue")
 public class LangXBaseListener implements LangXListener {
 	/**
 	 * {@inheritDoc}
@@ -220,13 +219,13 @@ public class LangXBaseListener implements LangXListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOr(LangXParser.OrContext ctx) { }
+	@Override public void enterSinglebool0(LangXParser.Singlebool0Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOr(LangXParser.OrContext ctx) { }
+	@Override public void exitSinglebool0(LangXParser.Singlebool0Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -244,6 +243,18 @@ public class LangXBaseListener implements LangXListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOr(LangXParser.OrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOr(LangXParser.OrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterXor(LangXParser.XorContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -256,13 +267,13 @@ public class LangXBaseListener implements LangXListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSinglebool0(LangXParser.Singlebool0Context ctx) { }
+	@Override public void enterNeg(LangXParser.NegContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSinglebool0(LangXParser.Singlebool0Context ctx) { }
+	@Override public void exitNeg(LangXParser.NegContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
