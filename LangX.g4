@@ -5,7 +5,7 @@ prog: ( stat? NEWLINE )*
 
 stat: ID ' = ' boolexpr0  #assignBool
     | ID ' = ' expr0      #assign
-	| PRINT ID   		#print
+	| PRINT (NEG)? ID   		#print
 	| READ ID           #read
 ;
 
@@ -27,10 +27,11 @@ expr2:   INT			#int
        | '(' expr0 ')'		#par
 ;	
 
-boolexpr0:  NEG? boolexpr1                   #singlebool0
+boolexpr0:  boolexpr1                   #singlebool0
         |   boolexpr0 AND boolexpr1     #and
         |   boolexpr0 OR boolexpr1      #or
         |   boolexpr0 XOR boolexpr1     #xor
+        |   boolexpr0 NEG              #neg
         ;
 
 
@@ -73,10 +74,10 @@ XOR: ' ^ '
 NEG: '!'
     ;
 
-READ:	'read'
+READ:	'read '
     ;
 
-PRINT:	'print' 
+PRINT:	'print '
     ;
 
 TOINT: '(int)'

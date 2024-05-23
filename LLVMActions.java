@@ -171,16 +171,17 @@ public class LLVMActions extends LangXBaseListener {
       }
    }
 
-   // @Override
-   // public void exitNeg(LangXParser.NegContext ctx) {
-   //    Value v1 = stack.pop(); //numerator
-   //    if(v1.type == VarType.BOOL ) {
-   //       LLVMGenerator.neg(v1.name);
-   //       stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.BOOL) );
-   //    } else {
-   //       error(ctx.getStart().getLine(), "and type mismatch, not all variables are bool");
-   //    }
-   // }
+   @Override
+   public void exitNeg(LangXParser.NegContext ctx) {
+      Value v1 = stack.pop(); //numerator
+      System.out.println(v1.name);
+      if(v1.type == VarType.BOOL ) {
+         LLVMGenerator.neg(v1.name);
+         stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.BOOL) );
+      } else {
+         error(ctx.getStart().getLine(), "and type mismatch, not all variables are bool");
+      }
+ }
 
       @Override
    public void exitOr(LangXParser.OrContext ctx) {

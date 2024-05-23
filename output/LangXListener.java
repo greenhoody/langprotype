@@ -209,6 +209,18 @@ public interface LangXListener extends ParseTreeListener {
 	 */
 	void exitPar(LangXParser.ParContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code neg}
+	 * labeled alternative in {@link LangXParser#boolexpr0}.
+	 * @param ctx the parse tree
+	 */
+	void enterNeg(LangXParser.NegContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code neg}
+	 * labeled alternative in {@link LangXParser#boolexpr0}.
+	 * @param ctx the parse tree
+	 */
+	void exitNeg(LangXParser.NegContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code or}
 	 * labeled alternative in {@link LangXParser#boolexpr0}.
 	 * @param ctx the parse tree
