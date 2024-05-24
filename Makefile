@@ -6,7 +6,7 @@ ANTLR=./antlr-4.13.1-complete.jar
 all: generate compile test
 
 generate:
-	java -jar $(ANTLR) -o output LangX.g4
+	java -jar $(ANTLR) -o output PleaseWork.g4
 
 compile:
 	javac -cp $(ANTLR):output:. Main.java

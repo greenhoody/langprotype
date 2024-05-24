@@ -48,7 +48,6 @@ class LLVMGenerator{
       main_text += "store double "+value+", double* %"+id+"\n";
    }
 
-   //TO-DO
    static void assign_bool(String id, String value){
       main_text += "store i1 "+value+", i1* %"+id+"\n";
    }

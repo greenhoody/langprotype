@@ -9,14 +9,14 @@ public class Main {
     public static void main(String[] args) throws Exception {
         CharStream input = CharStreams.fromFileName(args[0]);
 
-        LangXLexer lexer = new LangXLexer(input);
+        PleaseWorkLexer lexer = new PleaseWorkLexer(input);
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        LangXParser parser = new LangXParser(tokens);
+        PleaseWorkParser parser = new PleaseWorkParser(tokens);
 
         ParseTree tree = parser.prog(); 
 
-        System.out.println(tree.toStringTree(parser));
+        //System.out.println(tree.toStringTree(parser));
 
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(new LLVMActions(), tree);
