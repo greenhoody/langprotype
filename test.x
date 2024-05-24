@@ -33,3 +33,13 @@ print ortf
 
 orff = F || F
 print orff
+
+
+y = 0
+z = 0
+read y
+read z
+x = y + z
+print x
+
+i = a - T
