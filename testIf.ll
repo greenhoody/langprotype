@@ -36,5 +36,19 @@ true3:
 %10 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpi, i32 0, i32 0), i32 %9)
 br label %false3
 false3:
+%11 = alloca i32
+store i32 0, i32* %11
+br label %cond4
+cond4:
+%12 = load i32, i32* %11
+%13 = add i32 %12, 1
+store i32 %13, i32* %11
+%14 = icmp slt i32 %12, 2
+br i1 %14, label %true4, label %false4
+true4:
+%15 = load i32, i32* %x
+%16 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpi, i32 0, i32 0), i32 %15)
+br label %cond4
+false4:
 ret i32 0 }
 

@@ -52,6 +52,30 @@ public class PleaseWorkBaseListener implements PleaseWorkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFblock(PleaseWorkParser.FblockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFblock(PleaseWorkParser.FblockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLblock(PleaseWorkParser.LblockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLblock(PleaseWorkParser.LblockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction(PleaseWorkParser.FunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,6 +83,30 @@ public class PleaseWorkBaseListener implements PleaseWorkListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunction(PleaseWorkParser.FunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFparam(PleaseWorkParser.FparamContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFparam(PleaseWorkParser.FparamContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLoop(PleaseWorkParser.LoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLoop(PleaseWorkParser.LoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

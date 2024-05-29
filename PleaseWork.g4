@@ -9,10 +9,14 @@ block: ( stat? NEWLINE )*
 blockif: block;
 
 fblock: block;
+lblock: block;
 
 function: FUNCTION fparam fblock ENDFUNCTION;
 
-stat: ID ' = ' expr0    #assign
+fparam: ID;
+
+stat: LOOP expr0 lblock ENDLOOP		#loop
+    | ID ' = ' expr0    #assign
     | IF expr0 THEN blockif ENDIF	#if
 	| PRINT ID   		#print
 	| READ ID           #read
@@ -56,7 +60,7 @@ ENDFUNCTION:	'endfunction';
 
 IF:	'if';
 
-THEN: 'then';
+THEN: ' then';
 
 ENDIF: 'endif';
 
@@ -93,6 +97,12 @@ READ:	'read '
 
 PRINT:	'print '
     ;
+
+LOOP: 'loop '
+;
+
+ENDLOOP: 'endloop'
+;
 
 TOINT: '(int)'
     ;
