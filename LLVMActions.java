@@ -24,7 +24,7 @@ public class LLVMActions extends PleaseWorkBaseListener {
     Value v = stack.pop();
     if (v.type != VarType.BOOL)
       {
-         error(ctx.getStart().getLine(), "If needs bool type variable");
+         error(ctx.getStart().getLine(), "If needs bool type");
       }
     }
 
