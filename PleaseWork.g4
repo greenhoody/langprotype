@@ -1,9 +1,16 @@
 grammar PleaseWork;
 
-prog: ( stat? NEWLINE )* 
+prog: ( (stat)? NEWLINE )*
 ;
 
-stat: ID ' = ' expr0     #assign
+block: ( stat? NEWLINE )*
+;
+
+blockif: block;
+
+
+stat: ID ' = ' expr0    #assign
+    | IF expr0 THEN blockif ENDIF	#if
 	| PRINT ID   		#print
 	| READ ID           #read
 ;
@@ -39,6 +46,12 @@ compare:  EQUALS        #equals
         | GREATERTHAN   #greaterthan
         | LESSTHAN      #lessthan
         ;
+
+IF:	'if';
+
+THEN: 'then';
+
+ENDIF: 'endif';
 
 EQUALS: ' == ';
 

@@ -17,6 +17,26 @@ public interface PleaseWorkListener extends ParseTreeListener {
 	 */
 	void exitProg(PleaseWorkParser.ProgContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PleaseWorkParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock(PleaseWorkParser.BlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PleaseWorkParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock(PleaseWorkParser.BlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PleaseWorkParser#blockif}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockif(PleaseWorkParser.BlockifContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PleaseWorkParser#blockif}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlockif(PleaseWorkParser.BlockifContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code assign}
 	 * labeled alternative in {@link PleaseWorkParser#stat}.
 	 * @param ctx the parse tree
@@ -28,6 +48,18 @@ public interface PleaseWorkListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAssign(PleaseWorkParser.AssignContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code if}
+	 * labeled alternative in {@link PleaseWorkParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf(PleaseWorkParser.IfContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code if}
+	 * labeled alternative in {@link PleaseWorkParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf(PleaseWorkParser.IfContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code print}
 	 * labeled alternative in {@link PleaseWorkParser#stat}.

@@ -41,5 +41,3 @@ read y
 read z
 x = y + z
 print x
-
-i = a - T

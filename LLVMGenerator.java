@@ -1,9 +1,27 @@
+import java.util.Stack;
 
 class LLVMGenerator{
    
    static String header_text = "";
    static String main_text = "";
    static int reg = 1;
+   static int br = 0;
+
+   static Stack<Integer> brstack = new Stack<Integer>();
+
+
+   static void ifstart(){
+     br++;
+     main_text += "br i1 %"+(reg-1)+", label %true"+br+", label %false"+br+"\n";
+     main_text += "true"+br+":\n";
+     brstack.push(br);
+   }
+
+   static void ifend(){
+     int b = brstack.pop();
+     main_text += "br label %false"+b+"\n";
+     main_text += "false"+b+":\n";
+   }
 
    static void printf_i32(String id){
       main_text += "%"+reg+" = load i32, i32* %"+id+"\n";

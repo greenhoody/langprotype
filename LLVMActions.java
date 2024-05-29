@@ -15,36 +15,28 @@ class Value{
 }
 
 public class LLVMActions extends PleaseWorkBaseListener {
-    
-   //HashMap<String, Value> variables_2 = new HashMap<String, Value>();
 
     HashMap<String, VarType> variables = new HashMap<String, VarType>();
     Stack<Value> stack = new Stack<Value>();
-/*
+
     @Override
-    public void exitAssignNum(PleaseWorkParser.AssignContext ctx) {
-       String ID = ctx.ID().getText();
-       Value v = stack.pop();
-       variables.put(ID, v.type);
-       if( v.type == VarType.INT ){
-         LLVMGenerator.declare_i32(ID);
-         LLVMGenerator.assign_i32(ID, v.name);
-       } 
-       if( v.type == VarType.REAL ){
-         LLVMGenerator.declare_double(ID);
-         LLVMGenerator.assign_double(ID, v.name);
-       } 
+    public void exitIf(PleaseWorkParser.IfContext ctx) {
+    Value v = stack.pop();
+    if (v.type != VarType.BOOL)
+      {
+         error(ctx.getStart().getLine(), "If needs bool type variable");
+      }
     }
 
-        @Override
-    public void exitAssignBool(PleaseWorkParser.AssignBoolContext ctx) {
-      String ID = ctx.ID().getText();
-      Value v = stack.pop();
-      variables.put(ID, v.type);
-      LLVMGenerator.declare_bool(ID);
-      LLVMGenerator.assign_bool(ID, v.name);
+    @Override
+    public void enterBlockif(PleaseWorkParser.BlockifContext ctx) {
+       LLVMGenerator.ifstart();
     }
-   */
+
+    @Override
+    public void exitBlockif(PleaseWorkParser.BlockifContext ctx) {
+       LLVMGenerator.ifend();
+    }
 
     @Override
     public void exitAssign(PleaseWorkParser.AssignContext ctx) {
@@ -82,21 +74,6 @@ public class LLVMActions extends PleaseWorkBaseListener {
             error(ctx.getStart().getLine(), "no such variable");
         }
     }
-    /*
-
-    @Override
-    public void exitIdb(PleaseWorkParser.IdbContext ctx) {
-        String ID = ctx.ID().getText();
-        if (variables.containsKey(ID)) {
-            VarType type = variables.get(ID);
-            int reg = -1;
-            reg = LLVMGenerator.load_bool(ID);
-            stack.push(new Value("%" + reg, type));
-        } else {
-            error(ctx.getStart().getLine(), "no such variable");
-        }
-    }
-    */
 
     @Override 
     public void exitProg(PleaseWorkParser.ProgContext ctx) {
@@ -118,6 +95,7 @@ public class LLVMActions extends PleaseWorkBaseListener {
     public void exitBool(PleaseWorkParser.BoolContext ctx) {
          stack.push( new Value(ctx.BOOL().getText(), VarType.BOOL) );
     }
+
 
     @Override 
     public void exitAdd(PleaseWorkParser.AddContext ctx) {

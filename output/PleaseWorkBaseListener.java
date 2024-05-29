@@ -28,6 +28,30 @@ public class PleaseWorkBaseListener implements PleaseWorkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBlock(PleaseWorkParser.BlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlock(PleaseWorkParser.BlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBlockif(PleaseWorkParser.BlockifContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlockif(PleaseWorkParser.BlockifContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAssign(PleaseWorkParser.AssignContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -35,6 +59,18 @@ public class PleaseWorkBaseListener implements PleaseWorkListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAssign(PleaseWorkParser.AssignContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIf(PleaseWorkParser.IfContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIf(PleaseWorkParser.IfContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
