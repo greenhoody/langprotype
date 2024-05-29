@@ -1,6 +1,6 @@
 grammar PleaseWork;
 
-prog: ( (stat)? NEWLINE )*
+prog: ( (stat|function)? NEWLINE )*
 ;
 
 block: ( stat? NEWLINE )*
@@ -8,6 +8,9 @@ block: ( stat? NEWLINE )*
 
 blockif: block;
 
+fblock: block;
+
+function: FUNCTION fparam fblock ENDFUNCTION;
 
 stat: ID ' = ' expr0    #assign
     | IF expr0 THEN blockif ENDIF	#if
@@ -46,6 +49,10 @@ compare:  EQUALS        #equals
         | GREATERTHAN   #greaterthan
         | LESSTHAN      #lessthan
         ;
+
+FUNCTION: 'function';
+
+ENDFUNCTION:	'endfunction';
 
 IF:	'if';
 

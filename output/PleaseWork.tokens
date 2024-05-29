@@ -1,54 +1,58 @@
 T__0=1
 T__1=2
 T__2=3
-IF=4
-THEN=5
-ENDIF=6
-EQUALS=7
-NOTEQUALS=8
-GREATERTHAN=9
-LESSTHAN=10
-GREATER=11
-LESS=12
-BOOL=13
-AND=14
-OR=15
-XOR=16
-NEG=17
-READ=18
-PRINT=19
-TOINT=20
-TOREAL=21
-ID=22
-REAL=23
-INT=24
-SUB=25
-ADD=26
-MULT=27
-DIV=28
-NEWLINE=29
-WS=30
+FUNCTION=4
+ENDFUNCTION=5
+IF=6
+THEN=7
+ENDIF=8
+EQUALS=9
+NOTEQUALS=10
+GREATERTHAN=11
+LESSTHAN=12
+GREATER=13
+LESS=14
+BOOL=15
+AND=16
+OR=17
+XOR=18
+NEG=19
+READ=20
+PRINT=21
+TOINT=22
+TOREAL=23
+ID=24
+REAL=25
+INT=26
+SUB=27
+ADD=28
+MULT=29
+DIV=30
+NEWLINE=31
+WS=32
 ' = '=1
 '('=2
 ')'=3
-'if'=4
-'then'=5
-'endif'=6
-' == '=7
-' != '=8
-' >= '=9
-' <= '=10
-' > '=11
-' < '=12
-' && '=14
-' || '=15
-' ^ '=16
-'!'=17
-'read '=18
-'print '=19
-'(int)'=20
-'(real)'=21
-' - '=25
-' + '=26
-' * '=27
-' / '=28
+'function'=4
+'endfunction'=5
+'if'=6
+'then'=7
+'endif'=8
+' == '=9
+' != '=10
+' >= '=11
+' <= '=12
+' > '=13
+' < '=14
+' && '=16
+' || '=17
+' ^ '=18
+'!'=19
+'read '=20
+'print '=21
+'(int)'=22
+'(real)'=23
+' - '=27
+' + '=28
+' * '=29
+' / '=30

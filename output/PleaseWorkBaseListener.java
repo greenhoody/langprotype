@@ -52,6 +52,18 @@ public class PleaseWorkBaseListener implements PleaseWorkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunction(PleaseWorkParser.FunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction(PleaseWorkParser.FunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAssign(PleaseWorkParser.AssignContext ctx) { }
 	/**
 	 * {@inheritDoc}

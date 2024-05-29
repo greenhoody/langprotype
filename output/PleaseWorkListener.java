@@ -37,6 +37,16 @@ public interface PleaseWorkListener extends ParseTreeListener {
 	 */
 	void exitBlockif(PleaseWorkParser.BlockifContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PleaseWorkParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(PleaseWorkParser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PleaseWorkParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(PleaseWorkParser.FunctionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code assign}
 	 * labeled alternative in {@link PleaseWorkParser#stat}.
 	 * @param ctx the parse tree

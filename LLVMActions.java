@@ -17,6 +17,9 @@ class Value{
 public class LLVMActions extends PleaseWorkBaseListener {
 
     HashMap<String, VarType> variables = new HashMap<String, VarType>();
+    HashMap<String, VarType> local_variables = new HashMap<String, VarType>();
+    Stack<HashMap<String, VarType>> = new Stack<HashMap<String, VarType>>
+
     Stack<Value> stack = new Stack<Value>();
 
     @Override
@@ -42,19 +45,33 @@ public class LLVMActions extends PleaseWorkBaseListener {
     public void exitAssign(PleaseWorkParser.AssignContext ctx) {
        String ID = ctx.ID().getText();
        Value v = stack.pop();
+       if(variables.containsKey(ID))
+       {
+         if( v.type == VarType.INT ){
+            LLVMGenerator.assign_i32(ID, v.name);
+         }
+         if( v.type == VarType.REAL ){
+            LLVMGenerator.assign_double(ID, v.name);
+         }
+         if( v.type == VarType.BOOL ){
+            LLVMGenerator.assign_bool(ID, v.name);
+         }
+       }else {
+         if( v.type == VarType.INT ){
+            LLVMGenerator.declare_i32(ID);
+            LLVMGenerator.assign_i32(ID, v.name);
+         }
+         if( v.type == VarType.REAL ){
+            LLVMGenerator.declare_double(ID);
+            LLVMGenerator.assign_double(ID, v.name);
+         }
+         if( v.type == VarType.BOOL ){
+            LLVMGenerator.declare_bool(ID);
+            LLVMGenerator.assign_bool(ID, v.name);
+         }
+       }
        variables.put(ID, v.type);
-       if( v.type == VarType.INT ){
-         LLVMGenerator.declare_i32(ID);
-         LLVMGenerator.assign_i32(ID, v.name);
-       }
-       if( v.type == VarType.REAL ){
-         LLVMGenerator.declare_double(ID);
-         LLVMGenerator.assign_double(ID, v.name);
-       }
-       if( v.type == VarType.BOOL ){
-         LLVMGenerator.declare_bool(ID);
-         LLVMGenerator.assign_bool(ID, v.name);
-       }
+
     }
    @Override
     public void exitId(PleaseWorkParser.IdContext ctx) {
