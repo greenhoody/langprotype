@@ -1,4 +1,4 @@
-// Generated from PleaseWork.g4 by ANTLR 4.13.1
+// Generated from //wsl$/Ubuntu/home/gamman/repos/loop/langprotype/PleaseWork.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -114,14 +114,6 @@ public class PleaseWorkParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_prog; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterProg(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitProg(this);
-		}
 	}
 
 	public final ProgContext prog() throws RecognitionException {
@@ -184,14 +176,6 @@ public class PleaseWorkParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_block; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterBlock(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitBlock(this);
-		}
 	}
 
 	public final BlockContext block() throws RecognitionException {
@@ -247,14 +231,6 @@ public class PleaseWorkParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_blockif; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterBlockif(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitBlockif(this);
-		}
 	}
 
 	public final BlockifContext blockif() throws RecognitionException {
@@ -295,28 +271,12 @@ public class PleaseWorkParser extends Parser {
 		public TerminalNode PRINT() { return getToken(PleaseWorkParser.PRINT, 0); }
 		public TerminalNode ID() { return getToken(PleaseWorkParser.ID, 0); }
 		public PrintContext(StatContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterPrint(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitPrint(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ReadContext extends StatContext {
 		public TerminalNode READ() { return getToken(PleaseWorkParser.READ, 0); }
 		public TerminalNode ID() { return getToken(PleaseWorkParser.ID, 0); }
 		public ReadContext(StatContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterRead(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitRead(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LoopContext extends StatContext {
@@ -329,14 +289,6 @@ public class PleaseWorkParser extends Parser {
 		}
 		public TerminalNode ENDLOOP() { return getToken(PleaseWorkParser.ENDLOOP, 0); }
 		public LoopContext(StatContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterLoop(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitLoop(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class IfContext extends StatContext {
@@ -350,14 +302,6 @@ public class PleaseWorkParser extends Parser {
 		}
 		public TerminalNode ENDIF() { return getToken(PleaseWorkParser.ENDIF, 0); }
 		public IfContext(StatContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterIf(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitIf(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AssignContext extends StatContext {
@@ -366,14 +310,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr0Context.class,0);
 		}
 		public AssignContext(StatContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterAssign(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitAssign(this);
-		}
 	}
 
 	public final StatContext stat() throws RecognitionException {
@@ -478,14 +414,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr1Context.class,0);
 		}
 		public Single0Context(Expr0Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterSingle0(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitSingle0(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AddContext extends Expr0Context {
@@ -497,14 +425,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr1Context.class,0);
 		}
 		public AddContext(Expr0Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterAdd(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitAdd(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NegContext extends Expr0Context {
@@ -513,14 +433,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr1Context.class,0);
 		}
 		public NegContext(Expr0Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterNeg(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitNeg(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SubContext extends Expr0Context {
@@ -532,14 +444,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr1Context.class,0);
 		}
 		public SubContext(Expr0Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterSub(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitSub(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class OrContext extends Expr0Context {
@@ -551,14 +455,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr0Context.class,0);
 		}
 		public OrContext(Expr0Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterOr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitOr(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AndContext extends Expr0Context {
@@ -570,14 +466,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr0Context.class,0);
 		}
 		public AndContext(Expr0Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterAnd(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitAnd(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class XorContext extends Expr0Context {
@@ -589,14 +477,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr0Context.class,0);
 		}
 		public XorContext(Expr0Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterXor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitXor(this);
-		}
 	}
 
 	public final Expr0Context expr0() throws RecognitionException {
@@ -756,14 +636,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr2Context.class,0);
 		}
 		public DivContext(Expr1Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterDiv(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitDiv(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class Single1Context extends Expr1Context {
@@ -771,14 +643,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr2Context.class,0);
 		}
 		public Single1Context(Expr1Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterSingle1(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitSingle1(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MultContext extends Expr1Context {
@@ -790,14 +654,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr2Context.class,0);
 		}
 		public MultContext(Expr1Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterMult(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitMult(this);
-		}
 	}
 
 	public final Expr1Context expr1() throws RecognitionException {
@@ -897,14 +753,6 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr0Context.class,0);
 		}
 		public ParContext(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterPar(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitPar(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TointContext extends Expr2Context {
@@ -913,27 +761,11 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr2Context.class,0);
 		}
 		public TointContext(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterToint(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitToint(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BoolContext extends Expr2Context {
 		public TerminalNode BOOL() { return getToken(PleaseWorkParser.BOOL, 0); }
 		public BoolContext(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterBool(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitBool(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TorealContext extends Expr2Context {
@@ -942,53 +774,21 @@ public class PleaseWorkParser extends Parser {
 			return getRuleContext(Expr2Context.class,0);
 		}
 		public TorealContext(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterToreal(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitToreal(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class RealContext extends Expr2Context {
 		public TerminalNode REAL() { return getToken(PleaseWorkParser.REAL, 0); }
 		public RealContext(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterReal(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitReal(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class IdContext extends Expr2Context {
 		public TerminalNode ID() { return getToken(PleaseWorkParser.ID, 0); }
 		public IdContext(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterId(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitId(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class IntContext extends Expr2Context {
 		public TerminalNode INT() { return getToken(PleaseWorkParser.INT, 0); }
 		public IntContext(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterInt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitInt(this);
-		}
 	}
 
 	public final Expr2Context expr2() throws RecognitionException {
@@ -1093,53 +893,21 @@ public class PleaseWorkParser extends Parser {
 	public static class LessthanContext extends CompareContext {
 		public TerminalNode LESSTHAN() { return getToken(PleaseWorkParser.LESSTHAN, 0); }
 		public LessthanContext(CompareContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterLessthan(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitLessthan(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class EqualsContext extends CompareContext {
 		public TerminalNode EQUALS() { return getToken(PleaseWorkParser.EQUALS, 0); }
 		public EqualsContext(CompareContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterEquals(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitEquals(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NotequalsContext extends CompareContext {
 		public TerminalNode NOTEQUALS() { return getToken(PleaseWorkParser.NOTEQUALS, 0); }
 		public NotequalsContext(CompareContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterNotequals(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitNotequals(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GreaterthanContext extends CompareContext {
 		public TerminalNode GREATERTHAN() { return getToken(PleaseWorkParser.GREATERTHAN, 0); }
 		public GreaterthanContext(CompareContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).enterGreaterthan(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PleaseWorkListener ) ((PleaseWorkListener)listener).exitGreaterthan(this);
-		}
 	}
 
 	public final CompareContext compare() throws RecognitionException {

@@ -1,4 +1,4 @@
-// Generated from PleaseWork.g4 by ANTLR 4.13.1
+// Generated from //wsl.localhost/Ubuntu/home/gamman/repos/loop/langprotype/PleaseWork.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -96,6 +96,26 @@ public interface PleaseWorkListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRead(PleaseWorkParser.ReadContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PleaseWorkParser#counter}.
+	 * @param ctx the parse tree
+	 */
+	void enterCounter(PleaseWorkParser.CounterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PleaseWorkParser#counter}.
+	 * @param ctx the parse tree
+	 */
+	void exitCounter(PleaseWorkParser.CounterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PleaseWorkParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void enterValue(PleaseWorkParser.ValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PleaseWorkParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void exitValue(PleaseWorkParser.ValueContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code single0}
 	 * labeled alternative in {@link PleaseWorkParser#expr0}.

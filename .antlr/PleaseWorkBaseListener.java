@@ -1,4 +1,4 @@
-// Generated from PleaseWork.g4 by ANTLR 4.13.1
+// Generated from //wsl.localhost/Ubuntu/home/gamman/repos/loop/langprotype/PleaseWork.g4 by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -107,6 +107,30 @@ public class PleaseWorkBaseListener implements PleaseWorkListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRead(PleaseWorkParser.ReadContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCounter(PleaseWorkParser.CounterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCounter(PleaseWorkParser.CounterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValue(PleaseWorkParser.ValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValue(PleaseWorkParser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

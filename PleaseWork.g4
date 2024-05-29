@@ -9,11 +9,13 @@ block: ( stat? NEWLINE )*
 blockif: block;
 
 
-stat: ID ' = ' expr0    #assign
+stat: LOOP expr0 block ENDLOOP		#loop
+    | ID ' = ' expr0    #assign
     | IF expr0 THEN blockif ENDIF	#if
 	| PRINT ID   		#print
 	| READ ID           #read
 ;
+
 
 
 expr0:    expr0 ADD expr1 #add
@@ -86,6 +88,12 @@ READ:	'read '
 
 PRINT:	'print '
     ;
+
+LOOP: 'loop '
+;
+
+ENDLOOP: 'endloop'
+;
 
 TOINT: '(int)'
     ;

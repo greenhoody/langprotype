@@ -9,6 +9,46 @@ class LLVMGenerator{
 
    static Stack<Integer> brstack = new Stack<Integer>();
 
+   static void loopstart(String repetitions){
+     
+      declare_i32(Integer.toString(reg));
+      
+      int counter = reg;
+      reg++;
+      
+      
+      
+      assign_i32(Integer.toString(counter), "0");
+      br++;
+      main_text += "br label %cond"+br+"\n";
+      main_text += "cond"+br+":\n";
+ 
+      
+      load_i32(Integer.toString(counter));
+
+      
+      add_i32("%"+(reg-1), "1");
+
+      
+      assign_i32(Integer.toString(counter), "%"+(reg-1));
+ 
+      main_text += "%"+reg+" = icmp slt i32 %"+(reg-2)+", "+repetitions+"\n";
+      reg++;
+ 
+      main_text += "br i1 %"+(reg-1)+", label %true"+br+", label %false"+br+"\n";
+      main_text += "true"+br+":\n";
+
+      
+      brstack.push(br);
+    }
+ 
+    static void loopend(){
+
+      
+      int b = brstack.pop();
+      main_text += "br label %cond"+b+"\n";
+      main_text += "false"+b+":\n";
+    }
 
    static void ifstart(){
      br++;

@@ -18,6 +18,28 @@ public class LLVMActions extends PleaseWorkBaseListener {
 
     HashMap<String, VarType> variables = new HashMap<String, VarType>();
     Stack<Value> stack = new Stack<Value>();
+    String value;
+
+
+    @Override
+    public void enterBlock(PleaseWorkParser.BlockContext ctx) { 
+      Value v = stack.pop();
+      if(v.type == VarType.INT){
+       LLVMGenerator.loopstart(v.name);
+      } else{
+         error(ctx.getStart().getLine(), "counter variable mismatch, expected INT");
+      }
+    }
+
+    @Override
+    public void exitBlock(PleaseWorkParser.BlockContext ctx) {
+       if( ctx.getParent() instanceof PleaseWorkParser.LoopContext ){
+         
+          LLVMGenerator.loopend();
+       }
+    }
+
+
 
     @Override
     public void exitIf(PleaseWorkParser.IfContext ctx) {
