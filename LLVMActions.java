@@ -23,16 +23,39 @@ public class LLVMActions extends PleaseWorkBaseListener {
     Stack<Value> stack = new Stack<Value>();
 
     //list of declared functions
-    HashSet<String> functions = new HashSet<String>();
+    HashMap<String, VarType> functions = new HashMap<String, VarType>();
     //decides on which stack to put variable, local or global
     Boolean global;
     //current function
-    String function,return_type;
+    String function;
 
 
     //TO_DO NAJWAŻNIEJSZE
     @Override
-    public void exitFblock(PleaseWorkParser.FblockContext ctx) {
+    public void exitFunction(PleaseWorkParser.FunctionContext ctx) {
+
+      String fname= ctx.fname().getText();
+      String return_type = ctx.datatype().getText();
+      VarType type = VarType.UNKNOWN;
+      //deciding what return type function will have
+      switch (return_type){
+         case "int":
+         type = VarType.INT;
+         return_type = "i32";
+         break;
+         case "real":
+         type = VarType.REAL;
+         return_type = "double";
+         break;
+         case "float":
+         //TO-DO
+         //return_type = "";
+         break;
+         case "bool":
+         return_type = "i1";
+         type = VarType.BOOL;
+         break;
+      }
 
        if( ! local_variables.containsKey(function) ){
          switch (return_type){
@@ -51,9 +74,6 @@ public class LLVMActions extends PleaseWorkBaseListener {
             LLVMGenerator.assign_double("%" + function, "0.0");
             LLVMGenerator.load_double( "%"+function );
                break;
-            case "float":
-               //TO-DO
-               break;
          }
        }
 
@@ -61,7 +81,6 @@ public class LLVMActions extends PleaseWorkBaseListener {
 
 
        local_variables = new HashMap<String, VarType>();
-       return_type = "";
        global = true;
 
     }
@@ -70,16 +89,16 @@ public class LLVMActions extends PleaseWorkBaseListener {
     public void enterFunction(PleaseWorkParser.FunctionContext ctx)
     {
       String fname= ctx.fname().getText();
-      functions.add(fname);
-      function = fname;
-
-      return_type = ctx.datatype().getText();
+      String return_type = ctx.datatype().getText();
+      VarType type = VarType.UNKNOWN;
       //deciding what return type function will have
       switch (return_type){
          case "int":
+         type = VarType.INT;
          return_type = "i32";
          break;
          case "real":
+         type = VarType.REAL;
          return_type = "double";
          break;
          case "float":
@@ -88,9 +107,11 @@ public class LLVMActions extends PleaseWorkBaseListener {
          break;
          case "bool":
          return_type = "i1";
+         type = VarType.BOOL;
          break;
       }
 
+      functions.put(fname, type);
       LLVMGenerator.functionstart(return_type, fname);
       global = false;
     }
@@ -199,16 +220,20 @@ public class LLVMActions extends PleaseWorkBaseListener {
    @Override
     public void exitId(PleaseWorkParser.IdContext ctx) {
         String ID = ctx.ID().getText();
-       if(functions.contains(ID)){
-         LLVMGenerator.call(ID, return_type);
-         switch (return_type){
-         case "i1":
+       if(functions.containsKey(ID)){
+       VarType type = functions.get(ID);
+
+         switch (type){
+         case VarType.BOOL:
+            LLVMGenerator.call(ID, "i1");
             stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.BOOL));
             break;
-         case "i32":
+         case VarType.INT:
+            LLVMGenerator.call(ID, "i32");
             stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.INT));
             break;
-         case "double":
+         case VarType.REAL:
+            LLVMGenerator.call(ID, "double");
             stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.REAL));
             break;
          }
