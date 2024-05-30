@@ -85,15 +85,13 @@ class LLVMGenerator{
    }
 
    static void printf_double(String id){
-      buffer += "%"+reg+" = load double, double* %"+id+"\n";
-      reg++;
+      int tmp = load_double(id);
       buffer += "%"+reg+" = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %"+(reg-1)+")\n";
       reg++;
    }
 
    static void printf_bool(String id){
-      buffer += "%"+reg+" = load i1, i1* %"+id+"\n";
-      reg++;
+      int tmp = load_bool(id);
       buffer += "%"+reg+" = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpb, i32 0, i32 0), i1 %"+(reg-1)+")\n";
       reg++;
    }
@@ -108,7 +106,7 @@ class LLVMGenerator{
 
    static void declare_double(String id, Boolean global){
       if( global ){
-         header_text += id+" = global double 0\n";
+         header_text += id+" = global double 0.0\n";
       } else {
 	 buffer += id+" = alloca double\n";
       }

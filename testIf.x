@@ -1,11 +1,31 @@
 t = 3
-int function nazwafunkcji then
-print t
+real function nazwafunkcji then
+    cos = 3.0
+    loop t
+        print cos
+        cos = cos + 1.0
+    endloop
+    nazwafunkcji = cos
 endfunction
 
-f = 0
+
 
 f = nazwafunkcji
+print f
+
+
+real function funkcjadwa then
+    cos = -3.0
+    loop t
+        print cos
+        cos = cos - 1.0
+    endloop
+    funkcjadwa = cos
+endfunction
+
+g = funkcjadwa
+print g
+
 
 x = 5
 z = 3

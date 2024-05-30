@@ -57,22 +57,34 @@ public class LLVMActions extends PleaseWorkBaseListener {
          break;
       }
 
-       if( ! local_variables.containsKey(function) ){
+       if( ! local_variables.containsKey(fname) ){
          switch (return_type){
             case "i1":
-               LLVMGenerator.declare_bool("%" + function,global);
-               LLVMGenerator.assign_bool("%" + function,"0");
-               LLVMGenerator.load_bool( "%"+function );
+               LLVMGenerator.declare_bool("%" + fname,global);
+               LLVMGenerator.assign_bool("%" + fname,"0");
+               LLVMGenerator.load_bool( "%"+fname );
                break;
             case "i32":
-            LLVMGenerator.declare_i32("%" + function,global);
-            LLVMGenerator.assign_i32("%" + function, "0");
-            LLVMGenerator.load_i32( "%"+function );
+            LLVMGenerator.declare_i32("%" + fname,global);
+            LLVMGenerator.assign_i32("%" + fname, "0");
+            LLVMGenerator.load_i32( "%"+fname );
                break;
             case "double":
-            LLVMGenerator.declare_double("%" + function,global);
-            LLVMGenerator.assign_double("%" + function, "0.0");
-            LLVMGenerator.load_double( "%"+function );
+            LLVMGenerator.declare_double("%" + fname,global);
+            LLVMGenerator.assign_double("%" + fname, "0.0");
+            LLVMGenerator.load_double( "%"+fname );
+               break;
+         }
+       } else if (local_variables.containsKey(fname)) {
+            switch (return_type){
+            case "i1":
+            LLVMGenerator.load_bool( "%"+fname );
+               break;
+            case "i32":
+            LLVMGenerator.load_i32( "%"+fname );
+               break;
+            case "double":
+            LLVMGenerator.load_double( "%"+fname );
                break;
          }
        }
