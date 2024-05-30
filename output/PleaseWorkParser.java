@@ -20,7 +20,8 @@ public class PleaseWorkParser extends Parser {
 		FUNCTION=8, ENDFUNCTION=9, IF=10, THEN=11, ENDIF=12, EQUALS=13, NOTEQUALS=14, 
 		GREATERTHAN=15, LESSTHAN=16, GREATER=17, LESS=18, BOOL=19, AND=20, OR=21, 
 		XOR=22, NEG=23, READ=24, PRINT=25, LOOP=26, ENDLOOP=27, TOINT=28, TOREAL=29, 
-		ID=30, REAL=31, INT=32, SUB=33, ADD=34, MULT=35, DIV=36, NEWLINE=37, WS=38;
+		ID=30, REAL=31, FLOAT=32, INT=33, SUB=34, ADD=35, MULT=36, DIV=37, NEWLINE=38, 
+		WS=39;
 	public static final int
 		RULE_prog = 0, RULE_block = 1, RULE_blockif = 2, RULE_fblock = 3, RULE_lblock = 4, 
 		RULE_function = 5, RULE_fname = 6, RULE_datatype = 7, RULE_stat = 8, RULE_expr0 = 9, 
@@ -39,7 +40,7 @@ public class PleaseWorkParser extends Parser {
 			"'function'", "'endfunction'", "'if'", "' then'", "'endif'", "' == '", 
 			"' != '", "' >= '", "' <= '", "' > '", "' < '", null, "' && '", "' || '", 
 			"' ^ '", "'!'", "'read '", "'print '", "'loop '", "'endloop'", "'(int)'", 
-			"'(real)'", null, null, null, "' - '", "' + '", "' * '", "' / '"
+			"'(real)'", null, null, null, null, "' - '", "' + '", "' * '", "' / '"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -49,7 +50,7 @@ public class PleaseWorkParser extends Parser {
 			"FUNCTION", "ENDFUNCTION", "IF", "THEN", "ENDIF", "EQUALS", "NOTEQUALS", 
 			"GREATERTHAN", "LESSTHAN", "GREATER", "LESS", "BOOL", "AND", "OR", "XOR", 
 			"NEG", "READ", "PRINT", "LOOP", "ENDLOOP", "TOINT", "TOREAL", "ID", "REAL", 
-			"INT", "SUB", "ADD", "MULT", "DIV", "NEWLINE", "WS"
+			"FLOAT", "INT", "SUB", "ADD", "MULT", "DIV", "NEWLINE", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -145,7 +146,7 @@ public class PleaseWorkParser extends Parser {
 			setState(33);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 138630137072L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 276069090544L) != 0)) {
 				{
 				{
 				setState(28);
@@ -232,7 +233,7 @@ public class PleaseWorkParser extends Parser {
 			setState(42);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 138630136832L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 276069090304L) != 0)) {
 				{
 				{
 				setState(37);
@@ -1480,7 +1481,7 @@ public class PleaseWorkParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001&\u0092\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\'\u0092\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
@@ -1510,11 +1511,11 @@ public class PleaseWorkParser extends Parser {
 		"\u0000\u001a\u001d\u0003\u0010\b\u0000\u001b\u001d\u0003\n\u0005\u0000"+
 		"\u001c\u001a\u0001\u0000\u0000\u0000\u001c\u001b\u0001\u0000\u0000\u0000"+
 		"\u001c\u001d\u0001\u0000\u0000\u0000\u001d\u001e\u0001\u0000\u0000\u0000"+
-		"\u001e \u0005%\u0000\u0000\u001f\u001c\u0001\u0000\u0000\u0000 #\u0001"+
+		"\u001e \u0005&\u0000\u0000\u001f\u001c\u0001\u0000\u0000\u0000 #\u0001"+
 		"\u0000\u0000\u0000!\u001f\u0001\u0000\u0000\u0000!\"\u0001\u0000\u0000"+
 		"\u0000\"\u0001\u0001\u0000\u0000\u0000#!\u0001\u0000\u0000\u0000$&\u0003"+
 		"\u0010\b\u0000%$\u0001\u0000\u0000\u0000%&\u0001\u0000\u0000\u0000&\'"+
-		"\u0001\u0000\u0000\u0000\')\u0005%\u0000\u0000(%\u0001\u0000\u0000\u0000"+
+		"\u0001\u0000\u0000\u0000\')\u0005&\u0000\u0000(%\u0001\u0000\u0000\u0000"+
 		"),\u0001\u0000\u0000\u0000*(\u0001\u0000\u0000\u0000*+\u0001\u0000\u0000"+
 		"\u0000+\u0003\u0001\u0000\u0000\u0000,*\u0001\u0000\u0000\u0000-.\u0003"+
 		"\u0002\u0001\u0000.\u0005\u0001\u0000\u0000\u0000/0\u0003\u0002\u0001"+
@@ -1539,17 +1540,17 @@ public class PleaseWorkParser extends Parser {
 		"\u0000_`\u0003\u0012\t\u0002`c\u0001\u0000\u0000\u0000ac\u0003\u0014\n"+
 		"\u0000bR\u0001\u0000\u0000\u0000bU\u0001\u0000\u0000\u0000bY\u0001\u0000"+
 		"\u0000\u0000b]\u0001\u0000\u0000\u0000ba\u0001\u0000\u0000\u0000cl\u0001"+
-		"\u0000\u0000\u0000de\n\u0007\u0000\u0000ef\u0005\"\u0000\u0000fk\u0003"+
-		"\u0014\n\u0000gh\n\u0006\u0000\u0000hi\u0005!\u0000\u0000ik\u0003\u0014"+
+		"\u0000\u0000\u0000de\n\u0007\u0000\u0000ef\u0005#\u0000\u0000fk\u0003"+
+		"\u0014\n\u0000gh\n\u0006\u0000\u0000hi\u0005\"\u0000\u0000ik\u0003\u0014"+
 		"\n\u0000jd\u0001\u0000\u0000\u0000jg\u0001\u0000\u0000\u0000kn\u0001\u0000"+
 		"\u0000\u0000lj\u0001\u0000\u0000\u0000lm\u0001\u0000\u0000\u0000m\u0013"+
 		"\u0001\u0000\u0000\u0000nl\u0001\u0000\u0000\u0000op\u0006\n\uffff\uffff"+
 		"\u0000pq\u0003\u0016\u000b\u0000qz\u0001\u0000\u0000\u0000rs\n\u0002\u0000"+
-		"\u0000st\u0005#\u0000\u0000ty\u0003\u0016\u000b\u0000uv\n\u0001\u0000"+
-		"\u0000vw\u0005$\u0000\u0000wy\u0003\u0016\u000b\u0000xr\u0001\u0000\u0000"+
+		"\u0000st\u0005$\u0000\u0000ty\u0003\u0016\u000b\u0000uv\n\u0001\u0000"+
+		"\u0000vw\u0005%\u0000\u0000wy\u0003\u0016\u000b\u0000xr\u0001\u0000\u0000"+
 		"\u0000xu\u0001\u0000\u0000\u0000y|\u0001\u0000\u0000\u0000zx\u0001\u0000"+
 		"\u0000\u0000z{\u0001\u0000\u0000\u0000{\u0015\u0001\u0000\u0000\u0000"+
-		"|z\u0001\u0000\u0000\u0000}\u008a\u0005 \u0000\u0000~\u008a\u0005\u001f"+
+		"|z\u0001\u0000\u0000\u0000}\u008a\u0005!\u0000\u0000~\u008a\u0005\u001f"+
 		"\u0000\u0000\u007f\u008a\u0005\u0013\u0000\u0000\u0080\u008a\u0005\u001e"+
 		"\u0000\u0000\u0081\u0082\u0005\u001c\u0000\u0000\u0082\u008a\u0003\u0016"+
 		"\u000b\u0000\u0083\u0084\u0005\u001d\u0000\u0000\u0084\u008a\u0003\u0016"+

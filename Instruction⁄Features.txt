@@ -2,6 +2,8 @@
  adding, subtracting, multiplication, and division of int32 and double numbers
  variables can be casted into other types.
  print results
-
-
- LLVMActions l. 80 i 85 jakby coś nadal było źle z boolami to dobry początek poszukiwań
+ pętle
+ instrukcje warunkowe
+ funckje
+ zasięg lokalny/globalny
+ dynamiczne typowanie

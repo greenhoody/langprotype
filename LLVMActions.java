@@ -479,17 +479,22 @@ public class LLVMActions extends PleaseWorkBaseListener {
     public void exitRead(PleaseWorkParser.ReadContext ctx) {
        String ID = ctx.ID().getText();
        VarType type = variables.get(ID);
-       if( ! variables.containsKey(ID) ) {
-         error(ctx.getStart().getLine(), "unknown variable "+ID);
-       } else {
-         if(type == VarType.INT)
-         {
-            LLVMGenerator.scanInt(ID);
+
+       if(variables.containsKey(ID) ) {
+         if(type == VarType.INT){
+            LLVMGenerator.scanInt("@" + ID);
          } else if (type == VarType.REAL) {
-            LLVMGenerator.scanReal(ID);
+            LLVMGenerator.scanReal("@" + ID);
          }
-       }
-    }
+      } else if (local_variables.containsKey(ID) ) {
+         if(type == VarType.INT) {
+            LLVMGenerator.scanInt("%" + ID);
+         } else if (type == VarType.REAL) {
+            LLVMGenerator.scanReal("%" + ID);
+         }
+       }else{error(ctx.getStart().getLine(), "unknown variable "+ID);}
+
+   }
 
    void error(int line, String msg){
        System.err.println("Error, line "+line+", "+msg);
