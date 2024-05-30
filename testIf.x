@@ -1,3 +1,9 @@
+t = 3
+int function nazwafunkcji then
+print t
+endfunction
+
+
 x = 5
 z = 3
 z = 7

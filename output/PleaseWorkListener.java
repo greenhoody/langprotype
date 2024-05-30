@@ -67,15 +67,25 @@ public interface PleaseWorkListener extends ParseTreeListener {
 	 */
 	void exitFunction(PleaseWorkParser.FunctionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PleaseWorkParser#fparam}.
+	 * Enter a parse tree produced by {@link PleaseWorkParser#fname}.
 	 * @param ctx the parse tree
 	 */
-	void enterFparam(PleaseWorkParser.FparamContext ctx);
+	void enterFname(PleaseWorkParser.FnameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PleaseWorkParser#fparam}.
+	 * Exit a parse tree produced by {@link PleaseWorkParser#fname}.
 	 * @param ctx the parse tree
 	 */
-	void exitFparam(PleaseWorkParser.FparamContext ctx);
+	void exitFname(PleaseWorkParser.FnameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PleaseWorkParser#datatype}.
+	 * @param ctx the parse tree
+	 */
+	void enterDatatype(PleaseWorkParser.DatatypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PleaseWorkParser#datatype}.
+	 * @param ctx the parse tree
+	 */
+	void exitDatatype(PleaseWorkParser.DatatypeContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code loop}
 	 * labeled alternative in {@link PleaseWorkParser#stat}.

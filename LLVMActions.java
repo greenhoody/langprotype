@@ -1,6 +1,7 @@
 
 import java.util.HashMap;
 import java.util.Stack;
+import java.util.HashSet;
 
 enum VarType{ INT, REAL, BOOL ,UNKNOWN }
 
@@ -18,9 +19,81 @@ public class LLVMActions extends PleaseWorkBaseListener {
 
     HashMap<String, VarType> variables = new HashMap<String, VarType>();
     HashMap<String, VarType> local_variables = new HashMap<String, VarType>();
-    
 
     Stack<Value> stack = new Stack<Value>();
+
+    //list of declared functions
+    HashSet<String> functions = new HashSet<String>();
+    //decides on which stack to put variable, local or global
+    Boolean global;
+    //current function
+    String function,return_type;
+
+
+    //TO_DO NAJWAŻNIEJSZE
+    @Override
+    public void exitFblock(PleaseWorkParser.FblockContext ctx) {
+
+       if( ! local_variables.containsKey(function) ){
+         switch (return_type){
+            case "i1":
+               LLVMGenerator.declare_bool("%" + function,global);
+               LLVMGenerator.assign_bool("%" + function,"0");
+               LLVMGenerator.load_bool( "%"+function );
+               break;
+            case "i32":
+            LLVMGenerator.declare_i32("%" + function,global);
+            LLVMGenerator.assign_i32("%" + function, "0");
+            LLVMGenerator.load_i32( "%"+function );
+               break;
+            case "double":
+            LLVMGenerator.declare_double("%" + function,global);
+            LLVMGenerator.assign_double("%" + function, "0.0");
+            LLVMGenerator.load_double( "%"+function );
+               break;
+            case "float":
+               //TO-DO
+               break;
+         }
+       }
+
+       LLVMGenerator.functionend(return_type);
+
+
+       local_variables = new HashMap<String, VarType>();
+       return_type = "";
+       global = true;
+
+    }
+
+    @Override
+    public void enterFunction(PleaseWorkParser.FunctionContext ctx)
+    {
+      String fname= ctx.fname().getText();
+      functions.add(fname);
+      function = fname;
+
+      return_type = ctx.datatype().getText();
+      //deciding what return type function will have
+      switch (return_type){
+         case "int":
+         return_type = "i32";
+         break;
+         case "real":
+         return_type = "double";
+         break;
+         case "float":
+         //TO-DO
+         //return_type = "";
+         break;
+         case "bool":
+         return_type = "i1";
+         break;
+      }
+
+      LLVMGenerator.functionstart(return_type, fname);
+      global = false;
+    }
 
     @Override
     public void enterLblock(PleaseWorkParser.LblockContext ctx) { 
@@ -62,57 +135,105 @@ public class LLVMActions extends PleaseWorkBaseListener {
 
     @Override
     public void exitAssign(PleaseWorkParser.AssignContext ctx) {
+
        String ID = ctx.ID().getText();
        Value v = stack.pop();
        if(variables.containsKey(ID))
        {
          if( v.type == VarType.INT ){
-            LLVMGenerator.assign_i32(ID, v.name);
+            LLVMGenerator.assign_i32("@" + ID, v.name);
          }
          if( v.type == VarType.REAL ){
-            LLVMGenerator.assign_double(ID, v.name);
+            LLVMGenerator.assign_double("@" + ID, v.name);
          }
          if( v.type == VarType.BOOL ){
-            LLVMGenerator.assign_bool(ID, v.name);
+            LLVMGenerator.assign_bool("@" + ID, v.name);
          }
-       }else {
+       }else if(local_variables.containsKey(ID))
+       {
          if( v.type == VarType.INT ){
-            LLVMGenerator.declare_i32(ID);
-            LLVMGenerator.assign_i32(ID, v.name);
+            LLVMGenerator.assign_i32("%" + ID, v.name);
          }
          if( v.type == VarType.REAL ){
-            LLVMGenerator.declare_double(ID);
-            LLVMGenerator.assign_double(ID, v.name);
+            LLVMGenerator.assign_double("%" + ID, v.name);
          }
          if( v.type == VarType.BOOL ){
-            LLVMGenerator.declare_bool(ID);
-            LLVMGenerator.assign_bool(ID, v.name);
+            LLVMGenerator.assign_bool("%" + ID, v.name);
          }
        }
-       variables.put(ID, v.type);
+       //variable doesn't exist
+       else{
+         if(global){
+            if( v.type == VarType.INT ){
+               LLVMGenerator.declare_i32("@" + ID, global);
+               LLVMGenerator.assign_i32("@" +ID, v.name);
+            }
+            if( v.type == VarType.REAL ){
+               LLVMGenerator.declare_double("@" +ID, global);
+               LLVMGenerator.assign_double("@" +ID, v.name);
+            }
+            if( v.type == VarType.BOOL ){
+               LLVMGenerator.declare_bool("@" + ID, global);
+               LLVMGenerator.assign_bool("@" + ID, v.name);
+            }
+            variables.put(ID,v.type);
+         } else if(!global){
+            if( v.type == VarType.INT ){
+               LLVMGenerator.declare_i32("%" + ID, global);
+               LLVMGenerator.assign_i32("%" + ID, v.name);
+            }
+            if( v.type == VarType.REAL ){
+               LLVMGenerator.declare_double("%" + ID, global);
+               LLVMGenerator.assign_double("%" + ID, v.name);
+            }
+            if( v.type == VarType.BOOL ){
+               LLVMGenerator.declare_bool("%" + ID, global);
+               LLVMGenerator.assign_bool("%" + ID, v.name);
+            }
+            local_variables.put(ID,v.type);
+         }
+       }
 
     }
+
    @Override
     public void exitId(PleaseWorkParser.IdContext ctx) {
         String ID = ctx.ID().getText();
-        if (variables.containsKey(ID)) {
-            VarType type = variables.get(ID);
+        if (local_variables.containsKey(ID)) {
+            VarType type = local_variables.get(ID);
             int reg = -1;
             if (type == VarType.INT) {
-                reg = LLVMGenerator.load_i32(ID);
+                reg = LLVMGenerator.load_i32("%" + ID);
             } else if (type == VarType.REAL) {
-                reg = LLVMGenerator.load_double(ID);
+                reg = LLVMGenerator.load_double("%" + ID);
             } else if (type == VarType.BOOL) {
-                reg = LLVMGenerator.load_bool(ID);
+                reg = LLVMGenerator.load_bool("%" + ID);
             }
             stack.push(new Value("%" + reg, type));
+         }else if(variables.containsKey(ID)){
+          VarType type = variables.get(ID);
+            int reg = -1;
+            if (type == VarType.INT) {
+                reg = LLVMGenerator.load_i32("@" + ID);
+            } else if (type == VarType.REAL) {
+                reg = LLVMGenerator.load_double("@" + ID);
+            } else if (type == VarType.BOOL) {
+                reg = LLVMGenerator.load_bool("@" + ID);
+            }
+            stack.push(new Value("@" + reg, type));
         } else {
             error(ctx.getStart().getLine(), "no such variable");
         }
     }
 
+    @Override
+    public void enterProg(PleaseWorkParser.ProgContext ctx) {
+       global = true;
+    }
+
     @Override 
     public void exitProg(PleaseWorkParser.ProgContext ctx) {
+       LLVMGenerator.close_main();
        System.out.println( LLVMGenerator.generate() );
     }
 

@@ -11,9 +11,16 @@ blockif: block;
 fblock: block;
 lblock: block;
 
-function: FUNCTION fparam fblock ENDFUNCTION;
+function: datatype FUNCTION fname THEN fblock ENDFUNCTION;
 
-fparam: ID;
+fname: ID;
+
+datatype: INT_TYPE
+        | REAL_TYPE
+        | FLOAT_TYPE
+        | BOOL_TYPE
+        ;
+
 
 stat: LOOP expr0 lblock ENDLOOP		#loop
     | ID ' = ' expr0    #assign
@@ -53,6 +60,14 @@ compare:  EQUALS        #equals
         | GREATERTHAN   #greaterthan
         | LESSTHAN      #lessthan
         ;
+
+INT_TYPE : 'int';
+
+REAL_TYPE : 'real';
+
+FLOAT_TYPE : 'float';
+
+BOOL_TYPE: 'bool';
 
 FUNCTION: 'function';
 

@@ -88,13 +88,25 @@ public class PleaseWorkBaseListener implements PleaseWorkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFparam(PleaseWorkParser.FparamContext ctx) { }
+	@Override public void enterFname(PleaseWorkParser.FnameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFparam(PleaseWorkParser.FparamContext ctx) { }
+	@Override public void exitFname(PleaseWorkParser.FnameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDatatype(PleaseWorkParser.DatatypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDatatype(PleaseWorkParser.DatatypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
