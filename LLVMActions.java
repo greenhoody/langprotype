@@ -138,7 +138,7 @@ public class LLVMActions extends PleaseWorkBaseListener {
 
        String ID = ctx.ID().getText();
        Value v = stack.pop();
-       if(variables.containsKey(ID))
+      if(variables.containsKey(ID))
        {
          if( v.type == VarType.INT ){
             LLVMGenerator.assign_i32("@" + ID, v.name);
@@ -199,7 +199,22 @@ public class LLVMActions extends PleaseWorkBaseListener {
    @Override
     public void exitId(PleaseWorkParser.IdContext ctx) {
         String ID = ctx.ID().getText();
-        if (local_variables.containsKey(ID)) {
+       if(functions.contains(ID)){
+         LLVMGenerator.call(ID, return_type);
+         switch (return_type){
+         case "i1":
+            stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.BOOL));
+            break;
+         case "i32":
+            stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.INT));
+            break;
+         case "double":
+            stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.REAL));
+            break;
+         }
+
+          //stack.push(new Value("%" + (LLVMGenerator.reg -1), return_type));
+       }else if (local_variables.containsKey(ID)) {
             VarType type = local_variables.get(ID);
             int reg = -1;
             if (type == VarType.INT) {
@@ -220,7 +235,7 @@ public class LLVMActions extends PleaseWorkBaseListener {
             } else if (type == VarType.BOOL) {
                 reg = LLVMGenerator.load_bool("@" + ID);
             }
-            stack.push(new Value("@" + reg, type));
+            stack.push(new Value("%" + reg, type));
         } else {
             error(ctx.getStart().getLine(), "no such variable");
         }
@@ -398,7 +413,16 @@ public class LLVMActions extends PleaseWorkBaseListener {
     @Override
     public void exitPrint(PleaseWorkParser.PrintContext ctx) {
        String ID = ctx.ID().getText();
-       VarType type = variables.get(ID);
+       VarType type = null;
+       if (local_variables.containsKey(ID)) {
+          type = local_variables.get(ID);
+          ID = "%" + ID;
+       } else if (variables.containsKey(ID))
+       {
+          type = variables.get(ID);
+          ID = "@" + ID;
+       }
+
        if( type != null ) {
           if( type == VarType.INT ){
             LLVMGenerator.printf_i32( ID );

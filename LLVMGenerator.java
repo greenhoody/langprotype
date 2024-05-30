@@ -12,7 +12,10 @@ class LLVMGenerator{
 
    static Stack<Integer> brstack = new Stack<Integer>();
 
-
+   static void call(String id, String type){
+      buffer += "%"+reg+" = call "+type+" @"+id+"()\n";
+      reg++;
+   }
 
    static void functionstart(String data_type,String id){
       main_text += buffer;
@@ -31,21 +34,21 @@ class LLVMGenerator{
 
    static void loopstart(String repetitions){
      
-      declare_i32(Integer.toString(reg), false);
+      declare_i32("%" + Integer.toString(reg), false);
       
       int counter = reg;
       reg++;
       
-      assign_i32(Integer.toString(counter), "0");
+      assign_i32("%" + Integer.toString(counter), "0");
       br++;
       buffer += "br label %cond"+br+"\n";
       buffer += "cond"+br+":\n";
       
-      load_i32(Integer.toString(counter));
+      load_i32("%" + Integer.toString(counter));
       
       add_i32("%"+(reg-1), "1");
 
-      assign_i32(Integer.toString(counter), "%"+(reg-1));
+      assign_i32("%" + Integer.toString(counter), "%"+(reg-1));
  
       buffer += "%"+reg+" = icmp slt i32 %"+(reg-2)+", "+repetitions+"\n";
       reg++;
@@ -76,8 +79,7 @@ class LLVMGenerator{
    }
 
    static void printf_i32(String id){
-      buffer += "%"+reg+" = load i32, i32* %"+id+"\n";
-      reg++;
+      int tmp = load_i32(id);
       buffer += "%"+reg+" = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpi, i32 0, i32 0), i32 %"+(reg-1)+")\n";
       reg++;
    }
@@ -97,7 +99,7 @@ class LLVMGenerator{
    }
 
    static void declare_i32(String id, Boolean global){
-      if( global ){
+   if( global ){
          header_text += id+" = global i32 0\n";
       } else {
 	 buffer += id+" = alloca i32\n";

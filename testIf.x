@@ -3,6 +3,9 @@ int function nazwafunkcji then
 print t
 endfunction
 
+f = 0
+
+f = nazwafunkcji
 
 x = 5
 z = 3
