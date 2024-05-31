@@ -12,11 +12,11 @@ compile:
 	javac -cp $(ANTLR):output:. Main.java
 
 test:
-	java -cp $(ANTLR):output:. Main testIf.x > testIf.ll
-	lli testIf.ll
+	java -cp $(ANTLR):output:. Main testFunkcje.x > testFunkcje.ll
+	lli testFunkcje.ll
 
 clean:
-	rm -f testIf.ll
+	rm -f testArytmetyka.ll
 	rm -f *.class
 	rm -rf output
 

@@ -96,6 +96,15 @@ class LLVMGenerator{
       reg++;
    }
 
+   static void printf_float(String id){
+       load_float(id);
+      
+      buffer += "%" + reg + " = fpext float %" + (reg-1) + " to double\n";  // Extend float to double
+      reg++;
+      buffer += "%" + reg + " = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %" + (reg-1) + ")\n";
+      reg++;
+    }
+
    static void declare_i32(String id, Boolean global){
    if( global ){
          header_text += id+" = global i32 0\n";
@@ -109,6 +118,14 @@ class LLVMGenerator{
          header_text += id+" = global double 0.0\n";
       } else {
 	 buffer += id+" = alloca double\n";
+      }
+   }
+
+   static void declare_float(String id, Boolean global){
+      if( global ){
+         header_text += id+" = global float 0.0\n";
+      } else {
+	 buffer += id+" = alloca float\n";
       }
    }
 
@@ -129,6 +146,20 @@ class LLVMGenerator{
       buffer += "store double "+value+", double* "+id+"\n";
    }
 
+   static void assign_float(String id, String value){
+
+   
+      if(   value.substring(value.length()-1,value.length()).equals("f")   ){
+         value = value.substring(0, value.length() - 1);
+         float floatValue = Float.parseFloat(value);
+         value = String.valueOf((double) floatValue);
+      }
+      
+      
+        buffer += "store float "+value+", float* "+id+"\n";
+     }
+
+
    static void assign_bool(String id, String value){
       buffer += "store i1 "+value+", i1* "+id+"\n";
    }
@@ -141,7 +172,13 @@ class LLVMGenerator{
    }
 
    static int load_double(String id){
-      buffer += "%"+reg+" = load double, double*"+id+"\n";
+      buffer += "%"+reg+" = load double, double* "+id+"\n";
+      reg++;
+      return reg - 1;
+   }
+
+   static int load_float(String id){
+      buffer += "%"+reg+" = load float, float* "+id+"\n";
       reg++;
       return reg - 1;
    }
@@ -182,6 +219,11 @@ class LLVMGenerator{
       reg++;
    }
 
+   static void add_float(String val1, String val2){
+      buffer += "%"+reg+" = fadd float "+val1+", "+val2+"\n";
+      reg++;
+   }
+
    static void sub_i32(String val1, String val2){
       buffer += "%"+reg+" = sub i32 "+val1+", "+val2+"\n";
       reg++;
@@ -189,6 +231,10 @@ class LLVMGenerator{
 
    static void sub_double(String val1, String val2){
       buffer += "%"+reg+" = fsub double "+val1+", "+val2+"\n";
+      reg++;
+   }
+   static void sub_float(String val1, String val2){
+      buffer += "%"+reg+" = fsub float "+val1+", "+val2+"\n";
       reg++;
    }
 
@@ -202,6 +248,11 @@ class LLVMGenerator{
       reg++;
    }
 
+   static void mult_float(String val1, String val2){
+      buffer += "%"+reg+" = fmul float "+val1+", "+val2+"\n";
+      reg++;
+   }
+
    static void div_i32(String val1, String val2){
       buffer += "%"+reg+" = sdiv i32 "+val1+", "+val2+"\n";
       reg++;
@@ -209,6 +260,11 @@ class LLVMGenerator{
 
    static void div_double(String val1, String val2){
       buffer += "%"+reg+" = fdiv double "+val1+", "+val2+"\n";
+      reg++;
+   }
+
+   static void div_float(String val1, String val2){
+      buffer += "%"+reg+" = fdiv float "+val1+", "+val2+"\n";
       reg++;
    }
 
@@ -232,6 +288,12 @@ class LLVMGenerator{
         buffer += "%"+reg+" = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strsd, i32 0, i32 0), double* "+id+")\n";
         reg++;
     }
+
+    static void scanF(String id) {
+      buffer += "%" + reg + " = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), float* %" + id + ")\n";
+   
+      reg++;
+   }
 
    static void close_main(){
       main_text += buffer;

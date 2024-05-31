@@ -46,6 +46,7 @@ expr1:  expr2			#single1
 ;
 
 expr2:   INT			#int
+       | FLOAT          #float
        | REAL           #real
        | BOOL           #bool
        | ID             #id
@@ -125,7 +126,7 @@ TOINT: '(int)'
 TOREAL: '(real)'
     ;
 
-ID:   ('a'..'z'|'A'..'Z')+
+ID:   ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9')*
    ;
 
 REAL: '-'?'0'..'9'+'.''0'..'9'+

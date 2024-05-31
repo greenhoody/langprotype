@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Stack;
 import java.util.HashSet;
 
-enum VarType{ INT, REAL, BOOL ,UNKNOWN }
+enum VarType{ INT, REAL, FLOAT, BOOL ,UNKNOWN }
 
 class Value{ 
 	public String name;
@@ -48,8 +48,8 @@ public class LLVMActions extends PleaseWorkBaseListener {
          return_type = "double";
          break;
          case "float":
-         //TO-DO
-         //return_type = "";
+         type = VarType.FLOAT;
+         return_type = "float";
          break;
          case "bool":
          return_type = "i1";
@@ -74,6 +74,11 @@ public class LLVMActions extends PleaseWorkBaseListener {
             LLVMGenerator.assign_double("%" + fname, "0.0");
             LLVMGenerator.load_double( "%"+fname );
                break;
+               case "float":
+            LLVMGenerator.declare_float("%" + fname,global);
+            LLVMGenerator.assign_float("%" + fname, "0.0");
+            LLVMGenerator.load_float( "%"+fname );
+               break;
          }
        } else if (local_variables.containsKey(fname)) {
             switch (return_type){
@@ -85,6 +90,9 @@ public class LLVMActions extends PleaseWorkBaseListener {
                break;
             case "double":
             LLVMGenerator.load_double( "%"+fname );
+               break;
+            case "float":
+            LLVMGenerator.load_float( "%"+fname );
                break;
          }
        }
@@ -114,8 +122,8 @@ public class LLVMActions extends PleaseWorkBaseListener {
          return_type = "double";
          break;
          case "float":
-         //TO-DO
-         //return_type = "";
+         type = VarType.FLOAT;
+         return_type = "float";
          break;
          case "bool":
          return_type = "i1";
@@ -179,6 +187,9 @@ public class LLVMActions extends PleaseWorkBaseListener {
          if( v.type == VarType.REAL ){
             LLVMGenerator.assign_double("@" + ID, v.name);
          }
+         if( v.type == VarType.FLOAT ){
+            LLVMGenerator.assign_float("@" + ID, v.name);
+         }
          if( v.type == VarType.BOOL ){
             LLVMGenerator.assign_bool("@" + ID, v.name);
          }
@@ -189,6 +200,9 @@ public class LLVMActions extends PleaseWorkBaseListener {
          }
          if( v.type == VarType.REAL ){
             LLVMGenerator.assign_double("%" + ID, v.name);
+         }
+         if( v.type == VarType.FLOAT ){
+            LLVMGenerator.assign_float("%" + ID, v.name);
          }
          if( v.type == VarType.BOOL ){
             LLVMGenerator.assign_bool("%" + ID, v.name);
@@ -205,6 +219,10 @@ public class LLVMActions extends PleaseWorkBaseListener {
                LLVMGenerator.declare_double("@" +ID, global);
                LLVMGenerator.assign_double("@" +ID, v.name);
             }
+            if( v.type == VarType.FLOAT ){
+               LLVMGenerator.declare_float("@" +ID, global);
+               LLVMGenerator.assign_float("@" +ID, v.name);
+            }
             if( v.type == VarType.BOOL ){
                LLVMGenerator.declare_bool("@" + ID, global);
                LLVMGenerator.assign_bool("@" + ID, v.name);
@@ -218,6 +236,10 @@ public class LLVMActions extends PleaseWorkBaseListener {
             if( v.type == VarType.REAL ){
                LLVMGenerator.declare_double("%" + ID, global);
                LLVMGenerator.assign_double("%" + ID, v.name);
+            }
+            if( v.type == VarType.FLOAT ){
+               LLVMGenerator.declare_float("%" + ID, global);
+               LLVMGenerator.assign_float("%" + ID, v.name);
             }
             if( v.type == VarType.BOOL ){
                LLVMGenerator.declare_bool("%" + ID, global);
@@ -236,17 +258,21 @@ public class LLVMActions extends PleaseWorkBaseListener {
        VarType type = functions.get(ID);
 
          switch (type){
-         case VarType.BOOL:
+         case BOOL:
             LLVMGenerator.call(ID, "i1");
             stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.BOOL));
             break;
-         case VarType.INT:
+         case INT:
             LLVMGenerator.call(ID, "i32");
             stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.INT));
             break;
-         case VarType.REAL:
+         case REAL:
             LLVMGenerator.call(ID, "double");
             stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.REAL));
+            break;
+         case FLOAT:
+            LLVMGenerator.call(ID, "float");
+            stack.push(new Value("%" + (LLVMGenerator.reg -1), VarType.FLOAT));
             break;
          }
 
@@ -258,7 +284,10 @@ public class LLVMActions extends PleaseWorkBaseListener {
                 reg = LLVMGenerator.load_i32("%" + ID);
             } else if (type == VarType.REAL) {
                 reg = LLVMGenerator.load_double("%" + ID);
-            } else if (type == VarType.BOOL) {
+            } else if (type == VarType.FLOAT) {
+               reg = LLVMGenerator.load_float("%" + ID);
+            } 
+            else if (type == VarType.BOOL) {
                 reg = LLVMGenerator.load_bool("%" + ID);
             }
             stack.push(new Value("%" + reg, type));
@@ -269,7 +298,10 @@ public class LLVMActions extends PleaseWorkBaseListener {
                 reg = LLVMGenerator.load_i32("@" + ID);
             } else if (type == VarType.REAL) {
                 reg = LLVMGenerator.load_double("@" + ID);
-            } else if (type == VarType.BOOL) {
+            } else if (type == VarType.FLOAT) {
+               reg = LLVMGenerator.load_float("@" + ID);
+           }  
+            else if (type == VarType.BOOL) {
                 reg = LLVMGenerator.load_bool("@" + ID);
             }
             stack.push(new Value("%" + reg, type));
@@ -299,10 +331,15 @@ public class LLVMActions extends PleaseWorkBaseListener {
          stack.push( new Value(ctx.REAL().getText(), VarType.REAL) );       
     } 
 
-    // TO-DO
+    
     @Override
     public void exitBool(PleaseWorkParser.BoolContext ctx) {
          stack.push( new Value(ctx.BOOL().getText(), VarType.BOOL) );
+    }
+
+    @Override
+    public void exitFloat(PleaseWorkParser.FloatContext ctx) {
+         stack.push( new Value(ctx.FLOAT().getText(), VarType.FLOAT) );
     }
 
 
@@ -319,6 +356,10 @@ public class LLVMActions extends PleaseWorkBaseListener {
              LLVMGenerator.add_double(v1.name, v2.name); 
              stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.REAL) ); 
          }
+         if( v1.type == VarType.FLOAT ){
+            LLVMGenerator.add_float(v1.name, v2.name); 
+            stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.FLOAT) ); 
+        }
        } else {
           error(ctx.getStart().getLine(), "add type mismatch");
        }
@@ -341,6 +382,10 @@ public class LLVMActions extends PleaseWorkBaseListener {
              LLVMGenerator.sub_double(v1.name, v2.name);
              stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.REAL) );
          }
+         if( v1.type == VarType.FLOAT ){
+            LLVMGenerator.sub_float(v1.name, v2.name);
+            stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.FLOAT) );
+        }
        } else {
           error(ctx.getStart().getLine(), "sub type mismatch");
        }
@@ -359,6 +404,10 @@ public class LLVMActions extends PleaseWorkBaseListener {
              LLVMGenerator.mult_double(v1.name, v2.name); 
              stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.REAL) ); 
          }
+         if( v1.type == VarType.FLOAT ){
+            LLVMGenerator.mult_float(v1.name, v2.name); 
+            stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.FLOAT) ); 
+        }
        } else {
           error(ctx.getStart().getLine(), "mult type mismatch");
        }
@@ -377,6 +426,10 @@ public class LLVMActions extends PleaseWorkBaseListener {
             LLVMGenerator.div_double(v1.name, v2.name);
             stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.REAL) );
       }
+      if( v1.type == VarType.FLOAT ){
+         LLVMGenerator.div_float(v1.name, v2.name);
+         stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.FLOAT) );
+   }
       } else {
          error(ctx.getStart().getLine(), "div type mismatch");
       }
@@ -447,6 +500,8 @@ public class LLVMActions extends PleaseWorkBaseListener {
        stack.push( new Value("%"+(LLVMGenerator.reg-1), VarType.REAL) ); 
     }
 
+    
+
     @Override
     public void exitPrint(PleaseWorkParser.PrintContext ctx) {
        String ID = ctx.ID().getText();
@@ -467,6 +522,9 @@ public class LLVMActions extends PleaseWorkBaseListener {
           if( type == VarType.REAL ){
             LLVMGenerator.printf_double( ID );
           }
+          if( type == VarType.FLOAT ){
+            LLVMGenerator.printf_float( ID );
+          }
           if( type == VarType.BOOL ){
             LLVMGenerator.printf_bool( ID );
           }
@@ -486,11 +544,18 @@ public class LLVMActions extends PleaseWorkBaseListener {
          } else if (type == VarType.REAL) {
             LLVMGenerator.scanReal("@" + ID);
          }
+      } else if (type == VarType.FLOAT) {
+         LLVMGenerator.scanF("@" + ID);
+      
       } else if (local_variables.containsKey(ID) ) {
          if(type == VarType.INT) {
             LLVMGenerator.scanInt("%" + ID);
          } else if (type == VarType.REAL) {
             LLVMGenerator.scanReal("%" + ID);
+         }
+
+         else if (type == VarType.FLOAT) {
+            LLVMGenerator.scanF("%" + ID);
          }
        }else{error(ctx.getStart().getLine(), "unknown variable "+ID);}
 

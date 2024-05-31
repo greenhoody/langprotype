@@ -21,17 +21,17 @@ store i32 %4, i32* %2
 %5 = icmp slt i32 %3, %1
 br i1 %5, label %true1, label %false1
 true1:
-%6 = load double, double*%cos
+%6 = load double, double* %cos
 %7 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %6)
-%8 = load double, double*%cos
+%8 = load double, double* %cos
 %9 = fadd double 0.3, %8
 store double %9, double* %cos
 br label %cond1
 false1:
-%10 = load double, double*%cos
+%10 = load double, double* %cos
 %nazwafunkcji = alloca double
 store double %10, double* %nazwafunkcji
-%11 = load double, double*%nazwafunkcji
+%11 = load double, double* %nazwafunkcji
 ret double %11
 }
 define double @funkcjadwa() nounwind {
@@ -48,17 +48,17 @@ store i32 %4, i32* %2
 %5 = icmp slt i32 %3, %1
 br i1 %5, label %true2, label %false2
 true2:
-%6 = load double, double*%cos
+%6 = load double, double* %cos
 %7 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %6)
-%8 = load double, double*%cos
+%8 = load double, double* %cos
 %9 = fsub double %8, 1.0
 store double %9, double* %cos
 br label %cond2
 false2:
-%10 = load double, double*%cos
+%10 = load double, double* %cos
 %funkcjadwa = alloca double
 store double %10, double* %funkcjadwa
-%11 = load double, double*%funkcjadwa
+%11 = load double, double* %funkcjadwa
 ret double %11
 }
 @g = global double 0.0
@@ -79,14 +79,14 @@ store i32 -100, i32* %h
 store double %1, double* %bug
 %2 = load i32, i32* %h
 %3 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpi, i32 0, i32 0), i32 %2)
-%4 = load double, double*%cos
+%4 = load double, double* %cos
 %5 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %4)
-%6 = load double, double*%cos
-%7 = load double, double*%bug
+%6 = load double, double* %cos
+%7 = load double, double* %bug
 %8 = fmul double %7, %6
 %testowa = alloca double
 store double %8, double* %testowa
-%9 = load double, double*%testowa
+%9 = load double, double* %testowa
 ret double %9
 }
 @l = global double 0.0
@@ -96,15 +96,15 @@ define i32 @main() nounwind{
 store i32 3, i32* @t
 %1 = call double @funkcjadwa()
 store double %1, double* @g
-%2 = load double, double*@g
+%2 = load double, double* @g
 %3 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %2)
 %4 = call double @nazwafunkcji()
 store double %4, double* @f
-%5 = load double, double*@f
+%5 = load double, double* @f
 %6 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %5)
 %7 = call double @testowa()
 store double %7, double* @l
-%8 = load double, double*@l
+%8 = load double, double* @l
 %9 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @strpd, i32 0, i32 0), double %8)
 store i32 5, i32* @x
 store i1 true, i1* @y
